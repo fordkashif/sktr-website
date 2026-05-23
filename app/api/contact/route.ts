@@ -81,7 +81,7 @@ export async function POST(req: Request) {
             If it&apos;s urgent, reply directly to this email.
           </p>
           <p style="color:rgba(232,235,240,0.32);font-size:0.8rem;border-top:1px solid rgba(131,145,190,0.15);padding-top:1.5rem;margin:0;">
-            SKTR &middot; Company Building Group &middot; <a href="https://thesktr.com" style="color:#3e69ff;">thesktr.com</a>
+            SKTR &middot; Innovation Group &middot; <a href="https://thesktr.com" style="color:#3e69ff;">thesktr.com</a>
           </p>
         </div>
       `,

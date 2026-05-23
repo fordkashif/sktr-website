@@ -102,7 +102,7 @@ export default async function Image({
               fontWeight: 500,
             }}
           >
-            Company Building Group
+            Innovation Group
           </div>
         </div>
 
