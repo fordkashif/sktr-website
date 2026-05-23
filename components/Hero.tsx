@@ -50,7 +50,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 flex flex-col justify-end min-h-screen w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-16 sm:pb-28"
+        className="relative z-10 flex flex-col justify-end min-h-screen w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-28 sm:pb-28"
         style={{ y: contentY, opacity: contentOpacity }}
       >
         {/* Eyebrow */}
@@ -60,7 +60,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25, ease: ease }}
         >
-          Innovation Group
+          Company Building Group
         </motion.p>
 
         {/* Title — word-by-word reveal from below */}
@@ -166,7 +166,7 @@ export default function Hero() {
 
         {/* Scroll hint */}
         <motion.div
-          className="absolute bottom-10 left-4 sm:left-8 flex items-center gap-2"
+          className="absolute bottom-10 left-4 sm:left-8 hidden sm:flex items-center gap-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.8 }}
