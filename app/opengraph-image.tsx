@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "SKTR — Innovation Group";
+export const alt = "SKTR — Company Building Group";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -78,7 +78,7 @@ export default function OGImage() {
               fontWeight: 500,
             }}
           >
-            Innovation Group
+            Company Building Group
           </div>
           <div style={{ display: "flex", gap: "32px" }}>
             {verticals.map((v) => (
@@ -123,8 +123,8 @@ export default function OGImage() {
               fontWeight: 400,
             }}
           >
-            Four verticals. Shared infrastructure.
-            A single long-term conviction.
+            We build, operate, and back companies
+            with long-term conviction.
           </div>
         </div>
 

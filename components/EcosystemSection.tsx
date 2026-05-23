@@ -46,8 +46,8 @@ export default function EcosystemSection() {
           className="text-[rgba(232,235,240,0.5)] leading-[1.6] max-w-[40rem] m-0"
           style={{ fontSize: "clamp(0.92rem, 1.15vw, 1rem)" }}
         >
-          Athletics, Labs, Media, and Ventures — four verticals sharing
-          infrastructure, insight, and long-term conviction.{" "}
+          Four companies operating under the SKTR group. Each built
+          independently — all connected by shared infrastructure and long-term conviction.{" "}
           <span className="text-[rgba(232,235,240,0.28)]">Scroll to explore.</span>
         </p>
       </motion.div>

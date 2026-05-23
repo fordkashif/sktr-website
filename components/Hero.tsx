@@ -125,8 +125,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.82, ease: ease }}
         >
-          SKTR is an innovation group building companies, platforms, and
-          ecosystems across athletics, labs, media, and ventures.
+          SKTR is a company building group. We build, operate, and back
+          companies with long-term conviction.
         </motion.p>
 
         {/* CTAs */}

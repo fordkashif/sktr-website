@@ -14,15 +14,15 @@ const BASE_URL = "https://thesktr.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "SKTR — Innovation Group",
+    default: "SKTR — Company Building Group",
     template: "%s | SKTR",
   },
   description:
-    "SKTR is an innovation group building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
+    "SKTR is a company building group. We build, operate, and back companies with long-term conviction.",
   openGraph: {
-    title: "SKTR — Innovation Group",
+    title: "SKTR — Company Building Group",
     description:
-      "Building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
+      "SKTR builds, operates, and backs companies with long-term conviction.",
     url: BASE_URL,
     siteName: "SKTR",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "SKTR — Innovation Group",
+        alt: "SKTR — Company Building Group",
       },
     ],
     type: "website",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SKTR — Innovation Group",
+    title: "SKTR — Company Building Group",
     description:
-      "Building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
+      "SKTR builds, operates, and backs companies with long-term conviction.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -68,7 +68,7 @@ const jsonLd = {
   url: BASE_URL,
   logo: `${BASE_URL}/sktr-logo.png`,
   description:
-    "SKTR is an innovation group building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
+    "SKTR is a company building group. We build, operate, and back companies with long-term conviction.",
   email: "signal@thesktr.com",
   sameAs: [],
 };

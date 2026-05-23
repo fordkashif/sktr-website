@@ -26,12 +26,12 @@ export const verticals: Vertical[] = [
     tag: "Performance",
     title: "SKTR Athletics",
     description:
-      "A performance ecosystem built around athletes — connecting development, coaching, analytics, and media into a single operating model.",
+      "An athlete development company. We build the systems, coaching infrastructure, and performance technology behind elite athletes.",
     foot: ["Performance", "Systems"],
-    kicker: "01 / Performance",
+    kicker: "01 - SKTR Athletics",
     story: "Where human performance meets operating infrastructure.",
     storyCopy:
-      "What begins on the track expands into products, systems, and platforms. Athletics is where the SKTR model proves itself.",
+      "We build the systems behind athletes — connecting coaching, analytics, and development into one operating model.",
     axisLabel: "Athletics",
     waveSettings: { intensity: 18, speed: 8.6 },
     heroImage:
@@ -60,12 +60,12 @@ export const verticals: Vertical[] = [
     tag: "Research",
     title: "SKTR Labs",
     description:
-      "Research, prototyping, and applied invention — the engine that builds shared tools and infrastructure for the entire group.",
+      "A software and technology company. We build the digital tools, platforms, and infrastructure that power the SKTR group.",
     foot: ["Experiments", "Infrastructure"],
-    kicker: "02 / Research",
+    kicker: "02 - SKTR Labs",
     story: "The engine that makes everything else possible.",
     storyCopy:
-      "Every tool, system, and platform built across SKTR starts here. Labs turns research into infrastructure that scales.",
+      "Every tool, platform, and system built across SKTR starts here. Labs turns research into infrastructure that scales.",
     axisLabel: "Labs",
     waveSettings: { intensity: 10, speed: 6.4 },
     heroImage:
@@ -94,12 +94,12 @@ export const verticals: Vertical[] = [
     tag: "Editorial",
     title: "SKTR Media",
     description:
-      "Editorial, film, and distribution — how the SKTR ecosystem earns an audience and shapes the culture around it.",
+      "A media company. We produce editorial content, film, and video.",
     foot: ["Editorial", "Distribution"],
-    kicker: "03 / Editorial",
-    story: "How the ecosystem earns an audience and shapes culture.",
+    kicker: "03 - SKTR Media",
+    story: "A media company that makes things worth keeping.",
     storyCopy:
-      "Editorial, production, and distribution built around the platform — not around chasing reach.",
+      "Editorial, film, and video — produced with intention, not on a content calendar.",
     axisLabel: "Media",
     waveSettings: { intensity: 13, speed: 7.2 },
     heroImage:
@@ -128,12 +128,12 @@ export const verticals: Vertical[] = [
     tag: "Capital",
     title: "SKTR Ventures",
     description:
-      "Patient, selective capital — deployed behind operators, products, and platforms that strengthen the wider SKTR ecosystem.",
+      "The investment arm of the SKTR group. We back operators, products, and companies built for the long term.",
     foot: ["Capital", "Scale"],
-    kicker: "04 / Capital",
-    story: "Patient capital. Ecosystem alignment. Long-term structure.",
+    kicker: "04 - SKTR Ventures",
+    story: "Patient capital. Long-term conviction. No artificial timelines.",
     storyCopy:
-      "Capital supports the operators, products, and platforms that fit the wider SKTR horizon — structured to hold conviction through the cycles that shake out shorter-horizon investors.",
+      "We back operators and companies that fit the SKTR horizon — structured to hold conviction through the cycles that shake out shorter-horizon investors.",
     axisLabel: "Ventures",
     waveSettings: { intensity: 16, speed: 7.6 },
     heroImage:

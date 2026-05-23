@@ -3,6 +3,7 @@ import { ease } from "@/lib/motion";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import ContactWizard from "./ContactWizard";
 
 const channels = [
   { label: "General", email: "signal@thesktr.com" },
@@ -10,48 +11,12 @@ const channels = [
   { label: "Press", email: "press@thesktr.com" },
 ];
 
-type ContactState = "idle" | "loading" | "success" | "error";
 type NewsletterState = "idle" | "loading" | "success" | "error";
 
-const inputClass =
-  "min-h-[3rem] px-4 bg-transparent text-ink outline-none border border-[rgba(131,145,190,0.2)] placeholder:text-[rgba(232,235,240,0.28)] focus:border-[rgba(62,105,255,0.7)] transition-colors duration-200 disabled:opacity-40 w-full";
-
 export default function ContactSection() {
-  const MESSAGE_MAX = 800;
-
-  const [contactState, setContactState] = useState<ContactState>("idle");
-  const [contactError, setContactError] = useState("");
-  const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
-
   const [newsletterState, setNewsletterState] = useState<NewsletterState>("idle");
   const [newsletterError, setNewsletterError] = useState("");
   const [newsletterEmail, setNewsletterEmail] = useState("");
-
-  function updateForm(field: keyof typeof form) {
-    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setForm((f) => ({ ...f, [field]: e.target.value }));
-  }
-
-  async function handleContact(e: React.FormEvent) {
-    e.preventDefault();
-    setContactState("loading");
-    setContactError("");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) { setContactError(data.error ?? "Something went wrong."); setContactState("error"); return; }
-      setContactState("success");
-      setForm({ name: "", company: "", email: "", message: "" });
-      setTimeout(() => setContactState("idle"), 6000);
-    } catch {
-      setContactError("Network error. Please try again.");
-      setContactState("error");
-    }
-  }
 
   async function handleNewsletter(e: React.FormEvent) {
     e.preventDefault();
@@ -73,8 +38,6 @@ export default function ContactSection() {
       setNewsletterState("error");
     }
   }
-
-  const contactBusy = contactState === "loading" || contactState === "success";
 
   return (
     <section className="mt-24" id="contact">
@@ -105,153 +68,14 @@ export default function ContactSection() {
         </p>
       </motion.div>
 
-      {/* Full-width contact form */}
+      {/* Wizard */}
       <motion.div
-        className="border border-[rgba(131,145,190,0.2)] bg-card p-[2rem_2rem_2rem]"
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.7, ease: ease }}
       >
-        <AnimatePresence mode="wait">
-          {contactState === "success" ? (
-            <motion.div
-              key="success"
-              className="flex flex-col items-start gap-3 py-10"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              <span className="text-blue mono" style={{ fontSize: "0.72rem", letterSpacing: "0.14em" }}>
-                Message received
-              </span>
-              <p className="m-0 text-ink font-extrabold leading-tight" style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}>
-                We&apos;ll be in touch if it fits the direction.
-              </p>
-            </motion.div>
-          ) : (
-            <motion.form
-              key="form"
-              className="grid grid-cols-1 md:grid-cols-2 gap-5"
-              onSubmit={handleContact}
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {/* Name */}
-              <div className="flex flex-col gap-2">
-                <label className="mono text-[rgba(232,235,240,0.42)]" style={{ fontSize: "0.68rem" }} htmlFor="contact-name">
-                  Name
-                </label>
-                <input
-                  id="contact-name"
-                  type="text"
-                  placeholder="Your name"
-                  autoComplete="name"
-                  required
-                  disabled={contactBusy}
-                  value={form.name}
-                  onChange={updateForm("name")}
-                  className={inputClass}
-                />
-              </div>
-
-              {/* Company */}
-              <div className="flex flex-col gap-2">
-                <label className="mono text-[rgba(232,235,240,0.42)]" style={{ fontSize: "0.68rem" }} htmlFor="contact-company">
-                  Company / Role
-                </label>
-                <input
-                  id="contact-company"
-                  type="text"
-                  placeholder="Optional"
-                  autoComplete="organization"
-                  disabled={contactBusy}
-                  value={form.company}
-                  onChange={updateForm("company")}
-                  className={inputClass}
-                />
-              </div>
-
-              {/* Email — full width */}
-              <div className="flex flex-col gap-2 md:col-span-2">
-                <label className="mono text-[rgba(232,235,240,0.42)]" style={{ fontSize: "0.68rem" }} htmlFor="contact-email">
-                  Email
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  placeholder="name@company.com"
-                  autoComplete="email"
-                  required
-                  disabled={contactBusy}
-                  value={form.email}
-                  onChange={updateForm("email")}
-                  className={inputClass}
-                />
-              </div>
-
-              {/* Message — full width */}
-              <div className="flex flex-col gap-2 md:col-span-2">
-                <div className="flex justify-between items-center">
-                  <label className="mono text-[rgba(232,235,240,0.42)]" style={{ fontSize: "0.68rem" }} htmlFor="contact-message">
-                    Message
-                  </label>
-                  <span
-                    className="mono tabular-nums"
-                    style={{
-                      fontSize: "0.66rem",
-                      color: form.message.length > MESSAGE_MAX * 0.9
-                        ? "rgba(255,180,60,0.8)"
-                        : "rgba(232,235,240,0.24)",
-                    }}
-                  >
-                    {form.message.length}/{MESSAGE_MAX}
-                  </span>
-                </div>
-                <textarea
-                  id="contact-message"
-                  placeholder="What are you working on?"
-                  required
-                  maxLength={MESSAGE_MAX}
-                  disabled={contactBusy}
-                  value={form.message}
-                  onChange={updateForm("message")}
-                  rows={5}
-                  className={`${inputClass} resize-none py-3`}
-                />
-              </div>
-
-              {/* Submit + error */}
-              <div className="md:col-span-2 flex flex-col gap-3">
-                <motion.button
-                  type="submit"
-                  disabled={contactBusy}
-                  className="min-h-[3.2rem] border border-[rgba(86,118,255,0.5)] text-ink bg-[rgba(62,105,255,0.08)] mono cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed w-full md:w-fit md:px-10"
-                  whileHover={!contactBusy ? { backgroundColor: "rgba(62,105,255,0.18)", borderColor: "rgba(86,118,255,0.75)" } : {}}
-                  whileTap={!contactBusy ? { scale: 0.98 } : {}}
-                  transition={{ duration: 0.18 }}
-                >
-                  {contactState === "loading" ? "Sending…" : "Send message →"}
-                </motion.button>
-                <AnimatePresence>
-                  {contactState === "error" && (
-                    <motion.p
-                      className="mono m-0"
-                      style={{ fontSize: "0.8rem", color: "rgba(255,90,90,0.85)" }}
-                      initial={{ opacity: 0, y: 4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.25 }}
-                    >
-                      {contactError}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.form>
-          )}
-        </AnimatePresence>
+        <ContactWizard />
       </motion.div>
 
       {/* Bottom strip: newsletter + direct channels */}

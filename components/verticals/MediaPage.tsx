@@ -23,7 +23,7 @@ const formats = [
     id: "02",
     label: "Film & Video",
     description:
-      "Documentaries, athlete profiles, and production work. Stories told with intent — not for algorithm, for audience.",
+      "Documentaries, short films, and production work. Stories told with intent — not for algorithm, for audience.",
     image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80",
     alt: "Film camera on a production set",
   },
@@ -31,7 +31,7 @@ const formats = [
     id: "03",
     label: "Brand & Production",
     description:
-      "Content and production work for brands operating in the SKTR space. If the work is interesting, we're interested.",
+      "Content and production work for brands who care about what they put out. If the work is interesting, we're interested.",
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80",
     alt: "Creative production team collaborating on a project",
   },
