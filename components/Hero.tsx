@@ -50,7 +50,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 flex flex-col justify-end min-h-[100svh] w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-28 sm:pb-28"
+        className="relative z-10 flex flex-col justify-end min-h-[100svh] w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-16 sm:pb-28"
         style={{ y: contentY, opacity: contentOpacity }}
       >
         {/* Eyebrow */}
