@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen overflow-hidden flex flex-col"
+      className="relative min-h-[100svh] overflow-hidden flex flex-col"
       id="top"
     >
       {/* Background with parallax */}
@@ -50,7 +50,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 flex flex-col justify-end min-h-screen w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-28 sm:pb-28"
+        className="relative z-10 flex flex-col justify-end min-h-[100svh] w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-28 sm:pb-28"
         style={{ y: contentY, opacity: contentOpacity }}
       >
         {/* Eyebrow */}
@@ -60,7 +60,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25, ease: ease }}
         >
-          Company Building Group
+          Innovation Group
         </motion.p>
 
         {/* Title — word-by-word reveal from below */}
