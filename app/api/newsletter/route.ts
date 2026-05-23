@@ -34,7 +34,7 @@ export async function POST(req: Request) {
             platform launches, ecosystem updates, and perspectives from inside SKTR.
           </p>
           <p style="color:rgba(232,235,240,0.4);font-size:0.85rem;">
-            SKTR · Innovation Group · <a href="https://sktr.live" style="color:#3e69ff;">sktr.live</a>
+            SKTR · Innovation Group · <a href="https://thesktr.com" style="color:#3e69ff;">thesktr.com</a>
           </p>
         </div>
       `,

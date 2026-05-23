@@ -9,7 +9,7 @@ const outfit = Outfit({
   variable: "--font-outfit",
 });
 
-const BASE_URL = "https://sktr.live";
+const BASE_URL = "https://thesktr.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

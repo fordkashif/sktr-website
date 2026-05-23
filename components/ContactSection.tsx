@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const channels = [
-  { label: "General", email: "signal@sktr.live" },
-  { label: "Partnerships", email: "partners@sktr.live" },
-  { label: "Press", email: "press@sktr.live" },
+  { label: "General", email: "signal@thesktr.com" },
+  { label: "Partnerships", email: "partners@thesktr.com" },
+  { label: "Press", email: "press@thesktr.com" },
 ];
 
 type ContactState = "idle" | "loading" | "success" | "error";

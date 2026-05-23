@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://sktr.live/sitemap.xml",
+    sitemap: "https://thesktr.com/sitemap.xml",
   };
 }

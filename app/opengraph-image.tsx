@@ -116,7 +116,7 @@ export default function OGImage() {
               textTransform: "uppercase",
             }}
           >
-            sktr.live
+            thesktr.com
           </div>
         </div>
       </div>

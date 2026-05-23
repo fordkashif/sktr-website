@@ -39,11 +39,11 @@ export default function Footer() {
         <span>© 2026 SKTR</span>
         <span>/</span>
         <motion.a
-          href="mailto:signal@sktr.live"
+          href="mailto:signal@thesktr.com"
           whileHover={{ color: "rgba(232,235,240,0.72)" }}
           transition={{ duration: 0.15 }}
         >
-          signal@sktr.live
+          signal@thesktr.com
         </motion.a>
       </div>
     </motion.footer>
