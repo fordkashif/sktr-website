@@ -7,7 +7,7 @@ export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    const onScroll = () => setVisible(window.scrollY > window.innerHeight);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -16,7 +16,7 @@ export default function ScrollToTop() {
     <AnimatePresence>
       {visible && (
         <motion.button
-          className="fixed bottom-8 right-8 z-30 w-11 h-11 flex items-center justify-center bg-[rgba(5,6,8,0.88)] border border-[rgba(86,118,255,0.45)] text-blue cursor-pointer backdrop-blur-sm"
+          className="fixed bottom-8 right-8 z-[14] w-11 h-11 flex items-center justify-center bg-[rgba(5,6,8,0.88)] border border-[rgba(86,118,255,0.45)] text-blue cursor-pointer backdrop-blur-sm"
           aria-label="Scroll to top"
           initial={{ opacity: 0, y: 16, scale: 0.88 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}

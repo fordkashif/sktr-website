@@ -46,8 +46,8 @@ const platforms = [
     description:
       "Training, analysis, development, and media connect into a larger operating model — not fragmented across separate tools and teams.",
     image:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80",
-    alt: "Athlete training on a track",
+      "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80",
+    alt: "Athletes competing on a running track",
   },
   {
     num: "02",
@@ -57,8 +57,8 @@ const platforms = [
     description:
       "Integrated tools for coaches and performance staff — built around the athlete, not the admin workflow.",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-    alt: "Workstation with code and product tools",
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
+    alt: "Coach reviewing performance data on a tablet",
   },
   {
     num: "03",
@@ -68,40 +68,29 @@ const platforms = [
     description:
       "The tools and systems built in Labs become the foundation for every other vertical — infrastructure created once, used everywhere.",
     image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-    alt: "Team reviewing future-focused product work",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
+    alt: "Researcher working with technology and data",
   },
 ];
 
 export default function PlatformsSection() {
   return (
-    <section className="mt-24" id="platforms">
-      {/* Section intro */}
+    <section className="mt-28" id="platforms">
+      {/* Section intro — full-width statement */}
       <motion.div
-        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8"
+        className="mb-10 border-b border-[rgba(131,145,190,0.15)] pb-10"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: ease }}
       >
-        <div>
-          <p className="mono text-[rgba(232,235,240,0.52)] mb-[0.25rem]">
-            Products &amp; Platforms
-          </p>
-          <h2
-            className="m-0 font-extrabold leading-[0.96] tracking-[-0.05em]"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.15rem)" }}
-          >
-            Systems, tools, and operating layers built to scale.
-          </h2>
-        </div>
-        <p
-          className="w-full md:max-w-[28rem] text-[rgba(232,235,240,0.66)] leading-[1.75] md:shrink-0"
-          style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.1rem)" }}
+        <p className="mono text-[rgba(232,235,240,0.38)] mb-5">Products &amp; Platforms</p>
+        <h2
+          className="m-0 font-extrabold leading-[0.94] tracking-[-0.06em] max-w-[22ch]"
+          style={{ fontSize: "clamp(2.2rem, 5vw, 4.2rem)" }}
         >
-          SKTR builds beyond isolated products. The goal is leverage across
-          ecosystems, operators, and future categories.
-        </p>
+          Not one-off tools. Operating layers built to scale.
+        </h2>
       </motion.div>
 
       {/* Photo cards */}
@@ -128,7 +117,7 @@ export default function PlatformsSection() {
                 </span>
               </div>
               <h3
-                className="m-0 mb-3 text-ink leading-tight tracking-[-0.03em]"
+                className="m-0 mb-3 font-extrabold text-ink leading-tight tracking-[-0.03em]"
                 style={{ fontSize: "clamp(1.2rem, 1.6vw, 1.55rem)" }}
               >
                 {p.heading}

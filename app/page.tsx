@@ -2,11 +2,10 @@ import { MotionConfig } from "framer-motion";
 import ScrollProgress from "@/components/ScrollProgress";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import StatsSection from "@/components/StatsSection";
 import EcosystemSection from "@/components/EcosystemSection";
 import PlatformsSection from "@/components/PlatformsSection";
-import InnovationSection from "@/components/InnovationSection";
-import ThinkingSection from "@/components/ThinkingSection";
+import ManifestoSection from "@/components/ManifestoSection";
+import StatementSection from "@/components/StatementSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -26,7 +25,6 @@ export default function Page() {
       <ErrorBoundary>
         <Hero />
       </ErrorBoundary>
-      <StatsSection />
       <main className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 pb-12">
         <ErrorBoundary>
           <EcosystemSection />
@@ -34,12 +32,8 @@ export default function Page() {
         <ErrorBoundary>
           <PlatformsSection />
         </ErrorBoundary>
-        <ErrorBoundary>
-          <InnovationSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <ThinkingSection />
-        </ErrorBoundary>
+        <StatementSection />
+        <ManifestoSection />
         <ContactSection />
         <Footer />
       </main>

@@ -18,11 +18,11 @@ export const metadata: Metadata = {
     template: "%s | SKTR",
   },
   description:
-    "SKTR is an innovation group building companies, platforms, and ecosystems across athletics, technology, media, and ventures.",
+    "SKTR is an innovation group building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
   openGraph: {
     title: "SKTR — Innovation Group",
     description:
-      "Building companies, platforms, and ecosystems across athletics, technology, media, and ventures.",
+      "Building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
     url: BASE_URL,
     siteName: "SKTR",
     images: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SKTR — Innovation Group",
     description:
-      "Building companies, platforms, and ecosystems across athletics, technology, media, and ventures.",
+      "Building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
     images: ["/opengraph-image"],
   },
   robots: {
@@ -53,8 +53,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  icons: {
-    icon: "/favicon.ico",
+  other: {
+    "theme-color": "#050608",
+    "color-scheme": "dark",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
 };
 
@@ -65,7 +68,7 @@ const jsonLd = {
   url: BASE_URL,
   logo: `${BASE_URL}/sktr-logo.png`,
   description:
-    "SKTR is an innovation group building companies, platforms, and ecosystems across athletics, technology, media, and ventures.",
+    "SKTR is an innovation group building companies, platforms, and ecosystems across athletics, labs, media, and ventures.",
   email: "signal@thesktr.com",
   sameAs: [],
 };

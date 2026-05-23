@@ -30,12 +30,15 @@ export default function Hero() {
           muted
           loop
           playsInline
+          poster="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=60"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-[#040507]/90 via-[#050608]/52 to-[#050608]/80" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050608]/22 to-[#050608]/86" />
+        {/* Bleed into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#050608] to-transparent" />
         <div
           className="absolute inset-0"
           style={{
@@ -83,17 +86,15 @@ export default function Hero() {
                 <motion.span
                   className="inline-block"
                   animate={{
-                    x: [0, 1, -1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    x: [0, 0, 0, 0, -4, 4, -2, 0, 0, 0, 0, 0],
                     textShadow: [
                       "0 0 0 transparent",
-                      "-1px 0 rgba(62,105,255,0.42)",
-                      "1px 0 rgba(62,105,255,0.42)",
-                      "0 0 0 transparent",
-                      "2px 0 rgba(255,255,255,0.08)",
                       "0 0 0 transparent",
                       "0 0 0 transparent",
                       "0 0 0 transparent",
-                      "0 0 0 transparent",
+                      "-4px 0 rgba(62,105,255,0.7), 4px 0 rgba(255,60,60,0.5)",
+                      "4px 0 rgba(62,105,255,0.7), -4px 0 rgba(255,60,60,0.5)",
+                      "-2px 0 rgba(62,105,255,0.4)",
                       "0 0 0 transparent",
                       "0 0 0 transparent",
                       "0 0 0 transparent",
@@ -102,9 +103,11 @@ export default function Hero() {
                     ],
                   }}
                   transition={{
-                    duration: 7,
+                    duration: 6,
                     repeat: Infinity,
+                    repeatDelay: 2,
                     ease: "easeInOut" as const,
+                    times: [0, 0.2, 0.4, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.88, 0.94, 1],
                   }}
                 >
                   {word}
@@ -123,7 +126,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.82, ease: ease }}
         >
           SKTR is an innovation group building companies, platforms, and
-          ecosystems across athletics, technology, media, and ventures.
+          ecosystems across athletics, labs, media, and ventures.
         </motion.p>
 
         {/* CTAs */}
@@ -163,7 +166,7 @@ export default function Hero() {
 
         {/* Scroll hint */}
         <motion.div
-          className="absolute bottom-10 left-8 flex items-center gap-2"
+          className="absolute bottom-10 left-4 sm:left-8 flex items-center gap-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.6, duration: 0.8 }}

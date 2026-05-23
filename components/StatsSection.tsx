@@ -93,7 +93,7 @@ export default function StatsSection() {
   };
 
   return (
-    <div ref={ref} className="w-full max-w-[1700px] mx-auto px-4 sm:px-8">
+    <div ref={ref} className="w-full mt-16">
       <motion.div
         className="grid grid-cols-2 md:grid-cols-4 border border-[rgba(131,145,190,0.2)]"
         variants={containerVariants}

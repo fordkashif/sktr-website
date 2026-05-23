@@ -16,8 +16,8 @@ import { useEffect, useRef, useState } from "react";
 const navLinks = [
   { label: "Ecosystem", href: "#ecosystem", hasDropdown: true },
   { label: "Platforms", href: "#platforms", hasDropdown: false },
-  { label: "Innovation", href: "#future", hasDropdown: false },
-  { label: "Thinking", href: "#thinking", hasDropdown: false },
+  { label: "Principles", href: "#principles", hasDropdown: false },
+  { label: "Contact", href: "#contact", hasDropdown: false },
 ];
 
 const ecosystemLinks = verticals.map((v) => ({

@@ -15,12 +15,13 @@ export async function generateMetadata({
   const { vertical: slug } = await params;
   const v = getVertical(slug);
   if (!v) return {};
+  const ogDescription = `${v.storyCopy} — Part of the SKTR ecosystem.`;
   return {
     title: v.title,
-    description: v.description,
+    description: ogDescription,
     openGraph: {
       title: `${v.title} | SKTR`,
-      description: v.description,
+      description: ogDescription,
     },
   };
 }
