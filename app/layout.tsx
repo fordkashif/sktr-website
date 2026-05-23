@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   },
   description:
     "SKTR is a company building group. We build, operate, and back companies with long-term conviction.",
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
     title: "SKTR — Company Building Group",
     description:

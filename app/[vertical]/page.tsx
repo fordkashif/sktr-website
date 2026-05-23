@@ -3,6 +3,8 @@ import { getVertical, verticals } from "@/lib/verticals";
 import VerticalPage from "./VerticalPage";
 import type { Metadata } from "next";
 
+const BASE_URL = "https://thesktr.com";
+
 export function generateStaticParams() {
   return verticals.map((v) => ({ vertical: v.slug }));
 }
@@ -15,13 +17,39 @@ export async function generateMetadata({
   const { vertical: slug } = await params;
   const v = getVertical(slug);
   if (!v) return {};
-  const ogDescription = `${v.storyCopy} — Part of the SKTR ecosystem.`;
+
+  const title = v.title;
+  const ogTitle = `${v.title} | SKTR`;
+  const description = v.description;
+  const url = `${BASE_URL}/${v.slug}`;
+  const ogImage = `${BASE_URL}/${v.slug}/opengraph-image`;
+
   return {
-    title: v.title,
-    description: ogDescription,
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
-      title: `${v.title} | SKTR`,
-      description: ogDescription,
+      title: ogTitle,
+      description,
+      url,
+      siteName: "SKTR",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: ogTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -34,5 +62,27 @@ export default async function Page({
   const { vertical: slug } = await params;
   const vertical = getVertical(slug);
   if (!vertical) notFound();
-  return <VerticalPage vertical={vertical} />;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: vertical.title,
+    url: `${BASE_URL}/${vertical.slug}`,
+    description: vertical.description,
+    parentOrganization: {
+      "@type": "Organization",
+      name: "SKTR",
+      url: BASE_URL,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <VerticalPage vertical={vertical} />
+    </>
+  );
 }
