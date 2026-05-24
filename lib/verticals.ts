@@ -39,16 +39,16 @@ export const verticals: Vertical[] = [
     heroImageAlt: "Runner competing on a track",
     pillars: [
       {
-        heading: "Performance systems",
-        body: "Training, analytics, and coaching connected into a single operating model — not fragmented across separate tools and teams.",
+        heading: "Coaching infrastructure",
+        body: "Coach-athlete relationships built on defined protocols, shared data, and consistent methodology — not informal arrangements that can't scale or transfer.",
       },
       {
-        heading: "Athlete development",
-        body: "From early-stage development through elite performance, SKTR Athletics builds the infrastructure that compounds over a career.",
+        heading: "Performance analytics",
+        body: "Every session, movement pattern, and metric captured and interpreted. Data that informs coaching decisions — not just decorates a dashboard.",
       },
       {
-        heading: "Media and narrative",
-        body: "The stories around athletes matter as much as the results. Editorial and distribution are built into the ecosystem from day one.",
+        heading: "Long-arc development",
+        body: "Development measured in careers, not seasons. The operating model compounds — the longer an athlete is in the system, the stronger the foundation under their performance.",
       },
     ],
     cta: { label: "Partner with Athletics", href: "/#contact" },
