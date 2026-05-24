@@ -35,8 +35,8 @@ export const verticals: Vertical[] = [
     axisLabel: "Athletics",
     waveSettings: { intensity: 18, speed: 8.6 },
     heroImage:
-      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1800&q=80",
-    heroImageAlt: "Athlete training on a track",
+      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1800&q=80",
+    heroImageAlt: "Runner competing on a track",
     pillars: [
       {
         heading: "Performance systems",
