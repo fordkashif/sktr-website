@@ -1,7 +1,5 @@
 "use client";
 import { ease } from "@/lib/motion";
-import { verticals } from "@/lib/verticals";
-
 import {
   AnimatePresence,
   motion,
@@ -11,63 +9,33 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
-  { label: "Ecosystem", href: "#ecosystem", hasDropdown: true },
-  { label: "Platforms", href: "#platforms", hasDropdown: false },
-  { label: "Principles", href: "#principles", hasDropdown: false },
-  { label: "Contact", href: "#contact", hasDropdown: false },
+  { label: "Services", href: "/services" },
+  { label: "Work", href: "/work" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
-
-const ecosystemLinks = verticals.map((v) => ({
-  label: v.title,
-  tag: v.tag,
-  href: `/${v.slug}`,
-}));
 
 export default function Header() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const linkBase = isHome ? "" : "/";
-
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [solid, setSolid] = useState(false);
   const [ready, setReady] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
-  const [ecosystemOpen, setEcosystemOpen] = useState(false);
-  const [mobileEcosystemOpen, setMobileEcosystemOpen] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 1300);
+    const t = setTimeout(() => setReady(true), 800);
     return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
-    const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible.length > 0) setActiveSection(`#${visible[0].target.id}`);
-      },
-      { rootMargin: "-35% 0px -55% 0px", threshold: [0, 0.25, 0.5, 1] }
-    );
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observerRef.current!.observe(el);
-    });
-    return () => observerRef.current?.disconnect();
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -78,23 +46,22 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Close desktop dropdown on outside click
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setEcosystemOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
+    setMobileOpen(false);
+  }, [pathname]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (!ready || mobileOpen) return;
     const prev = scrollY.getPrevious() ?? 0;
-    if (latest <= 8) { setHidden(false); setSolid(false); }
-    else if (latest > prev && latest > 60) setHidden(true);
-    else if (latest < prev && latest > 8) { setHidden(false); setSolid(true); }
+    if (latest <= 8) {
+      setHidden(false);
+      setSolid(false);
+    } else if (latest > prev && latest > 60) {
+      setHidden(true);
+    } else if (latest < prev && latest > 8) {
+      setHidden(false);
+      setSolid(true);
+    }
   });
 
   return (
@@ -105,8 +72,12 @@ export default function Header() {
         animate={{
           opacity: hidden ? 0 : 1,
           y: hidden ? "-110%" : 0,
-          backgroundColor: solid || mobileOpen ? "rgba(5,6,8,0.96)" : "rgba(0,0,0,0)",
-          borderColor: solid || mobileOpen ? "rgba(131,145,190,0.26)" : "rgba(131,145,190,0)",
+          backgroundColor:
+            solid || mobileOpen ? "rgba(5,6,8,0.96)" : "rgba(0,0,0,0)",
+          borderColor:
+            solid || mobileOpen
+              ? "rgba(131,145,190,0.26)"
+              : "rgba(131,145,190,0)",
         }}
         transition={{
           opacity: { duration: 0.3, delay: ready ? 0 : 0.5 },
@@ -119,12 +90,7 @@ export default function Header() {
       >
         {/* Logo */}
         <div className="flex-none">
-          <a
-            href={`${linkBase}#top`}
-            aria-label="SKTR home"
-            className="flex items-center"
-            onClick={() => setMobileOpen(false)}
-          >
+          <Link href="/" aria-label="SKTR Labs home" className="flex items-center">
             <Image
               src="/sktr-logo.png"
               alt="SKTR"
@@ -133,132 +99,89 @@ export default function Header() {
               className="h-auto w-[clamp(7.5rem,12vw,10.5rem)]"
               priority
             />
-          </a>
+          </Link>
         </div>
 
-        {/* Nav — desktop only */}
+        {/* Nav — desktop */}
         <nav className="hidden md:flex flex-1 justify-center" aria-label="Primary">
           <div className="flex items-center gap-9">
-            {navLinks.map(({ label, href, hasDropdown }) => {
-              const isActive = activeSection === href;
-
-              if (hasDropdown) {
-                return (
-                  <div
-                    key={label}
-                    ref={dropdownRef}
-                    className="relative"
-                    onMouseEnter={() => setEcosystemOpen(true)}
-                    onMouseLeave={() => setEcosystemOpen(false)}
-                  >
-                    {/* Ecosystem trigger */}
-                    <a
-                      href={`${linkBase}${href}`}
-                      className="relative mono flex items-center gap-1 transition-colors duration-150"
-                      style={{ color: isActive || ecosystemOpen ? "#e8ebf0" : "rgba(232,235,240,0.68)" }}
-                    >
-                      {label}
-                      <motion.svg
-                        width="10" height="10" viewBox="0 0 10 10" fill="none"
-                        animate={{ rotate: ecosystemOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2, ease: ease }}
-                      >
-                        <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </motion.svg>
-                      <motion.span
-                        className="absolute -bottom-[1.1rem] left-1/2 -translate-x-1/2 w-[3px] h-[3px] rounded-full bg-blue"
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 0 }}
-                        transition={{ duration: 0.22, ease: ease }}
-                      />
-                    </a>
-
-                    {/* Desktop dropdown */}
-                    <AnimatePresence>
-                      {ecosystemOpen && (
-                        <motion.div
-                          className="absolute top-[calc(100%+1.1rem)] left-1/2 -translate-x-1/2 w-[220px] border border-[rgba(131,145,190,0.2)] overflow-hidden"
-                          style={{ backgroundColor: "rgba(5,6,8,0.98)", backdropFilter: "blur(12px)" }}
-                          initial={{ opacity: 0, y: -6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -6 }}
-                          transition={{ duration: 0.18, ease: ease }}
-                        >
-                          {ecosystemLinks.map(({ label: vLabel, tag, href: vHref }, i) => (
-                            <Link
-                              key={vHref}
-                              href={vHref}
-                              className="flex justify-between items-center px-4 py-3 hover:bg-[rgba(62,105,255,0.08)] transition-colors duration-150 group"
-                              style={{
-                                borderTop: i > 0 ? "1px solid rgba(131,145,190,0.12)" : "none",
-                              }}
-                              onClick={() => setEcosystemOpen(false)}
-                            >
-                              <span className="mono text-ink group-hover:text-blue transition-colors duration-150" style={{ fontSize: "0.78rem", letterSpacing: "0.1em" }}>
-                                {vLabel.replace("SKTR ", "")}
-                              </span>
-                              <span className="mono text-[rgba(232,235,240,0.36)]" style={{ fontSize: "0.66rem", letterSpacing: "0.12em" }}>
-                                {tag}
-                              </span>
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              }
-
+            {navLinks.map(({ label, href }) => {
+              const isActive =
+                pathname === href ||
+                (href !== "/" && pathname.startsWith(href));
               return (
-                <a
-                  key={label}
-                  href={`${linkBase}${href}`}
+                <Link
+                  key={href}
+                  href={href}
                   className="relative mono transition-colors duration-150 hover:text-ink"
-                  style={{ color: isActive ? "#e8ebf0" : "rgba(232,235,240,0.68)" }}
+                  style={{
+                    color: isActive ? "#e8ebf0" : "rgba(232,235,240,0.68)",
+                  }}
                 >
                   {label}
                   <motion.span
                     className="absolute -bottom-[1.1rem] left-1/2 -translate-x-1/2 w-[3px] h-[3px] rounded-full bg-blue"
                     initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 0 }}
+                    animate={{
+                      opacity: isActive ? 1 : 0,
+                      scale: isActive ? 1 : 0,
+                    }}
                     transition={{ duration: 0.22, ease: ease }}
                   />
-                </a>
+                </Link>
               );
             })}
           </div>
         </nav>
 
-        {/* CTA — desktop only */}
+        {/* CTA — desktop */}
         <div className="hidden md:flex flex-none justify-end">
-          <motion.a
-            href={`${linkBase}#contact`}
-            className="inline-flex items-center justify-center min-h-[2.8rem] px-4 border border-[rgba(86,118,255,0.46)] bg-[rgba(5,6,8,0.34)] text-ink mono"
-            whileHover={{ backgroundColor: "rgba(62,105,255,0.12)", borderColor: "rgba(86,118,255,0.7)", y: -1 }}
+          <motion.div
+            className="border border-[rgba(86,118,255,0.46)] bg-[rgba(5,6,8,0.34)]"
+            whileHover={{
+              backgroundColor: "rgba(62,105,255,0.12)",
+              borderColor: "rgba(86,118,255,0.7)",
+              y: -1,
+            }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.18 }}
           >
-            Connect
-          </motion.a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center min-h-[2.8rem] px-4 text-ink mono"
+            >
+              Start a project
+            </Link>
+          </motion.div>
         </div>
 
-        {/* Hamburger — mobile only */}
+        {/* Hamburger — mobile */}
         <button
           className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] cursor-pointer bg-transparent border-0 p-0"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((o) => !o)}
         >
-          <motion.span className="block w-6 bg-ink origin-center" style={{ height: "1.5px" }}
+          <motion.span
+            className="block w-6 bg-ink origin-center"
+            style={{ height: "1.5px" }}
             animate={mobileOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
             transition={{ duration: 0.26, ease: ease }}
           />
-          <motion.span className="block w-6 bg-ink origin-center" style={{ height: "1.5px" }}
-            animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+          <motion.span
+            className="block w-6 bg-ink origin-center"
+            style={{ height: "1.5px" }}
+            animate={
+              mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }
+            }
             transition={{ duration: 0.18 }}
           />
-          <motion.span className="block w-6 bg-ink origin-center" style={{ height: "1.5px" }}
-            animate={mobileOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+          <motion.span
+            className="block w-6 bg-ink origin-center"
+            style={{ height: "1.5px" }}
+            animate={
+              mobileOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }
+            }
             transition={{ duration: 0.26, ease: ease }}
           />
         </button>
@@ -275,95 +198,45 @@ export default function Header() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.22 }}
           >
-            {navLinks.map(({ label, href, hasDropdown }, i) => {
-              const isActive = activeSection === href;
-
-              if (hasDropdown) {
-                return (
-                  <motion.div
-                    key={label}
-                    className="flex flex-col items-center gap-3 w-full px-8"
-                    initial={{ opacity: 0, y: 22 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.07, duration: 0.38, ease: ease }}
-                  >
-                    {/* Ecosystem toggle */}
-                    <button
-                      className="flex items-center gap-2 text-[2.2rem] font-extrabold tracking-[-0.05em] cursor-pointer bg-transparent border-0 p-0"
-                      style={{ color: isActive ? "#3e69ff" : "#e8ebf0" }}
-                      onClick={() => setMobileEcosystemOpen((o) => !o)}
-                    >
-                      {label}
-                      <motion.svg
-                        width="20" height="20" viewBox="0 0 10 10" fill="none"
-                        animate={{ rotate: mobileEcosystemOpen ? 180 : 0 }}
-                        transition={{ duration: 0.22, ease: ease }}
-                      >
-                        <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-                      </motion.svg>
-                    </button>
-
-                    {/* Mobile ecosystem sub-links */}
-                    <AnimatePresence>
-                      {mobileEcosystemOpen && (
-                        <motion.div
-                          className="flex flex-col items-center gap-3 w-full"
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.25, ease: ease }}
-                        >
-                          {ecosystemLinks.map(({ label: vLabel, href: vHref }, j) => (
-                            <motion.div
-                              key={vHref}
-                              initial={{ opacity: 0, y: 8 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: j * 0.05, duration: 0.25, ease: ease }}
-                            >
-                              <Link
-                                href={vHref}
-                                className="mono text-blue flex items-center gap-1"
-                                style={{ fontSize: "0.88rem", letterSpacing: "0.1em" }}
-                                onClick={() => { setMobileOpen(false); setMobileEcosystemOpen(false); }}
-                              >
-                                {vLabel.replace("SKTR ", "")} →
-                              </Link>
-                            </motion.div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              }
-
+            {navLinks.map(({ label, href }, i) => {
+              const isActive =
+                pathname === href ||
+                (href !== "/" && pathname.startsWith(href));
               return (
-                <motion.a
-                  key={label}
-                  href={`${linkBase}${href}`}
-                  className="text-[2.2rem] font-extrabold tracking-[-0.05em]"
-                  style={{ color: isActive ? "#3e69ff" : "#e8ebf0" }}
+                <motion.div
+                  key={href}
                   initial={{ opacity: 0, y: 22 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07, duration: 0.38, ease: ease }}
-                  onClick={() => setMobileOpen(false)}
                 >
-                  {label}
-                </motion.a>
+                  <Link
+                    href={href}
+                    className="text-[2.2rem] font-extrabold tracking-[-0.05em]"
+                    style={{ color: isActive ? "#3e69ff" : "#e8ebf0" }}
+                  >
+                    {label}
+                  </Link>
+                </motion.div>
               );
             })}
 
-            <motion.a
-              href={`${linkBase}#contact`}
-              className="mt-4 mono text-blue border border-blue px-8 py-3"
-              style={{ fontSize: "0.88rem", letterSpacing: "0.04em" }}
+            <motion.div
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navLinks.length * 0.07, duration: 0.38, ease: ease }}
-              onClick={() => setMobileOpen(false)}
+              transition={{
+                delay: navLinks.length * 0.07,
+                duration: 0.38,
+                ease: ease,
+              }}
             >
-              Connect
-            </motion.a>
+              <Link
+                href="/contact"
+                className="mt-4 mono text-blue border border-blue px-8 py-3 block"
+                style={{ fontSize: "0.88rem", letterSpacing: "0.04em" }}
+              >
+                Start a project
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

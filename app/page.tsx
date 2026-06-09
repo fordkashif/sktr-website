@@ -1,40 +1,33 @@
 import { MotionConfig } from "framer-motion";
 import ScrollProgress from "@/components/ScrollProgress";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import EcosystemSection from "@/components/EcosystemSection";
-import PlatformsSection from "@/components/PlatformsSection";
-import ManifestoSection from "@/components/ManifestoSection";
-import StatementSection from "@/components/StatementSection";
-import ContactSection from "@/components/ContactSection";
+import LabsHero from "@/components/labs/LabsHero";
+import LabsTechStrip from "@/components/labs/LabsTechStrip";
+import LabsServicesGrid from "@/components/labs/LabsServicesGrid";
+import LabsFeaturedWork from "@/components/labs/LabsFeaturedWork";
+import LabsProcess from "@/components/labs/LabsProcess";
+import LabsCTABanner from "@/components/labs/LabsCTABanner";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import ErrorBoundary from "@/components/ErrorBoundary";
 
 export default function Page() {
   return (
     <MotionConfig reducedMotion="user">
       <ScrollProgress />
       <a
-        href="#ecosystem"
+        href="#top"
         className="fixed top-[-100%] left-4 z-[100] bg-blue text-white px-4 py-2 mono text-[0.78rem] focus:top-4 transition-all duration-200"
       >
         Skip to content
       </a>
       <Header />
-      <ErrorBoundary>
-        <Hero />
-      </ErrorBoundary>
+      <LabsHero />
       <main className="w-full max-w-[1700px] mx-auto px-4 sm:px-8 pb-12">
-        <ErrorBoundary>
-          <EcosystemSection />
-        </ErrorBoundary>
-        <ErrorBoundary>
-          <PlatformsSection />
-        </ErrorBoundary>
-        <StatementSection />
-        <ManifestoSection />
-        <ContactSection />
+        <LabsTechStrip />
+        <LabsServicesGrid />
+        <LabsFeaturedWork />
+        <LabsProcess />
+        <LabsCTABanner />
         <Footer />
       </main>
       <ScrollToTop />

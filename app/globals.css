@@ -68,3 +68,18 @@ h1, h2, h3, h4 {
   font-size: 0.72rem;
   font-weight: 500;
 }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   rgba(62, 105, 255, 0.45); opacity: 1; }
+  100% { box-shadow: 0 0 0 18px rgba(62, 105, 255, 0);    opacity: 0; }
+}
