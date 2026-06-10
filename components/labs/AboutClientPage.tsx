@@ -69,17 +69,35 @@ export default function AboutClientPage() {
         <div className={cx}>
 
           {/* Who we are */}
-          <motion.section className="mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-24" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.7, ease: ease }}>
-            <div>
-              <p className="mono mb-5" style={{ fontSize: "0.64rem", letterSpacing: "0.14em", color: "var(--ink-38)" }}>Who we are</p>
-              <h2 className="m-0 font-extrabold tracking-[-0.04em] leading-[1.05]" style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)" }}>
-                A software studio that builds things that work.
-              </h2>
+          <motion.section className="mt-16 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16" initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.7, ease: ease }}>
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="mono mb-5" style={{ fontSize: "0.64rem", letterSpacing: "0.14em", color: "var(--ink-38)" }}>Who we are</p>
+                <h2 className="m-0 font-extrabold tracking-[-0.04em] leading-[1.05]" style={{ fontSize: "clamp(1.6rem, 2.5vw, 2.2rem)" }}>
+                  A software studio that builds things that work.
+                </h2>
+              </div>
+              <div className="flex flex-col gap-5 leading-[1.85]" style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)", color: "var(--ink-68)" }}>
+                <p className="m-0">SKTR Labs is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs. We work with startups, independent founders, and businesses that need software done properly.</p>
+                <p className="m-0">The work spans the full stack: from interface design in Figma to production deployment on cloud infrastructure. We&apos;ve built mobile games with real-time leaderboards, SaaS booking platforms, and custom software for clients across industries.</p>
+                <p className="m-0">We don&apos;t separate design from engineering. The same people who design the interface build it — which means fewer surprises and faster decisions.</p>
+              </div>
             </div>
-            <div className="flex flex-col gap-5 leading-[1.85]" style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)", color: "var(--ink-68)" }}>
-              <p className="m-0">SKTR Labs is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs. We work with startups, independent founders, and businesses that need software done properly.</p>
-              <p className="m-0">The work spans the full stack: from interface design in Figma to production deployment on cloud infrastructure. We&apos;ve built mobile games with real-time leaderboards, SaaS booking platforms, and custom software for clients across industries.</p>
-              <p className="m-0">We don&apos;t separate design from engineering. The same people who design the interface build it — which means fewer surprises and faster decisions.</p>
+
+            {/* Photo slot — replace src/alt when you have a team or studio photo */}
+            <div className="relative w-full overflow-hidden" style={{ aspectRatio: "4/5", minHeight: "260px" }}>
+              {/* Placeholder — remove this div and uncomment <Image> below when you have a photo */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 border border-dashed border-[var(--border-mid)]" style={{ background: "rgba(62,105,255,0.03)" }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" style={{ color: "var(--ink-18)" }}>
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <p className="mono m-0 text-center" style={{ fontSize: "0.6rem", letterSpacing: "0.1em", color: "var(--ink-22)", lineHeight: 1.6 }}>
+                  Team / studio photo<br />Recommended: 800×1000px
+                </p>
+              </div>
+              {/* <Image src="/photos/team.jpg" alt="The SKTR Labs team" fill style={{ objectFit: "cover", objectPosition: "center top" }} /> */}
             </div>
           </motion.section>
 
