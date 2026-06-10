@@ -62,11 +62,8 @@ export default function LabsProcess() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7, ease: ease }}
       >
-        <p className="mono text-[rgba(232,235,240,0.52)] mb-[0.25rem]">Process</p>
-        <h2
-          className="m-0 font-extrabold leading-[0.96] tracking-[-0.05em]"
-          style={{ fontSize: "clamp(2rem, 4vw, 3.15rem)" }}
-        >
+        <p className="mono mb-[0.25rem]" style={{ color: "var(--ink-52)" }}>Process</p>
+        <h2 className="m-0 font-extrabold leading-[0.96] tracking-[-0.05em]" style={{ fontSize: "clamp(2rem, 4vw, 3.15rem)" }}>
           How we work.
         </h2>
       </motion.div>
@@ -78,16 +75,13 @@ export default function LabsProcess() {
         transition={{ duration: 0.7, ease: ease }}
       >
         {/* Step tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-l border-[rgba(131,145,190,0.12)]">
+        <div className="grid grid-cols-2 sm:grid-cols-4 border-t border-l border-[var(--border-section)]">
           {steps.map((step, i) => (
             <button
               key={step.num}
               onClick={() => setActive(i)}
-              className="relative flex flex-col gap-[0.35rem] px-6 py-5 text-left cursor-pointer border-b border-r border-[rgba(131,145,190,0.1)] transition-colors duration-150"
-              style={{
-                backgroundColor:
-                  active === i ? "rgba(62,105,255,0.07)" : "transparent",
-              }}
+              className="relative flex flex-col gap-[0.35rem] px-6 py-5 text-left cursor-pointer border-b border-r border-[var(--border-section)] transition-colors duration-150"
+              style={{ backgroundColor: active === i ? "rgba(62,105,255,0.07)" : "transparent" }}
             >
               {active === i && (
                 <motion.div
@@ -97,17 +91,14 @@ export default function LabsProcess() {
                   transition={{ type: "spring", stiffness: 450, damping: 30 }}
                 />
               )}
-              <span
-                className="mono text-blue"
-                style={{ fontSize: "0.58rem", letterSpacing: "0.1em" }}
-              >
+              <span className="mono text-blue" style={{ fontSize: "0.58rem", letterSpacing: "0.1em" }}>
                 {step.num}
               </span>
               <span
                 className="font-bold tracking-[-0.02em] transition-colors duration-150"
                 style={{
                   fontSize: "0.92rem",
-                  color: active === i ? "#e8ebf0" : "rgba(232,235,240,0.5)",
+                  color: active === i ? "var(--ink)" : "var(--ink-50)",
                 }}
               >
                 {step.title}
@@ -117,7 +108,7 @@ export default function LabsProcess() {
         </div>
 
         {/* Content panel */}
-        <div className="border-b border-l border-r border-[rgba(131,145,190,0.12)] min-h-[260px]">
+        <div className="border-b border-l border-r border-[var(--border-section)] min-h-[260px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
@@ -128,38 +119,23 @@ export default function LabsProcess() {
               transition={{ duration: 0.26, ease: ease }}
             >
               <div className="flex flex-col gap-3">
-                <span
-                  className="mono text-blue"
-                  style={{ fontSize: "0.58rem", letterSpacing: "0.1em" }}
-                >
+                <span className="mono text-blue" style={{ fontSize: "0.58rem", letterSpacing: "0.1em" }}>
                   {steps[active].num}
                 </span>
-                <h3
-                  className="m-0 font-extrabold tracking-[-0.04em]"
-                  style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-                >
+                <h3 className="m-0 font-extrabold tracking-[-0.04em]" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}>
                   {steps[active].title}
                 </h3>
-                <p
-                  className="m-0 text-[rgba(232,235,240,0.58)] leading-[1.82]"
-                  style={{ fontSize: "0.93rem" }}
-                >
+                <p className="m-0 leading-[1.82]" style={{ fontSize: "0.93rem", color: "var(--ink-58)" }}>
                   {steps[active].desc}
                 </p>
               </div>
               <ul className="m-0 p-0 list-none flex flex-col gap-4 justify-center">
                 {steps[active].details.map((detail, j) => (
                   <li key={j} className="flex items-start gap-4">
-                    <span
-                      className="mono text-blue shrink-0 mt-[3px]"
-                      style={{ fontSize: "0.56rem" }}
-                    >
+                    <span className="mono text-blue shrink-0 mt-[3px]" style={{ fontSize: "0.56rem" }}>
                       {String(j + 1).padStart(2, "0")}
                     </span>
-                    <span
-                      className="text-[rgba(232,235,240,0.68)] leading-[1.72]"
-                      style={{ fontSize: "0.9rem" }}
-                    >
+                    <span className="leading-[1.72]" style={{ fontSize: "0.9rem", color: "var(--ink-68)" }}>
                       {detail}
                     </span>
                   </li>
@@ -174,8 +150,8 @@ export default function LabsProcess() {
           <button
             onClick={() => setActive(Math.max(0, active - 1))}
             disabled={active === 0}
-            className="mono text-[rgba(232,235,240,0.3)] hover:text-blue transition-colors duration-150 disabled:opacity-20 cursor-pointer disabled:cursor-default"
-            style={{ fontSize: "0.68rem" }}
+            className="mono hover:text-blue transition-colors duration-150 disabled:opacity-20 cursor-pointer disabled:cursor-default"
+            style={{ fontSize: "0.68rem", color: "var(--ink-30)" }}
           >
             ← Previous
           </button>
@@ -188,10 +164,7 @@ export default function LabsProcess() {
                 style={{
                   width: active === i ? 20 : 6,
                   height: 6,
-                  backgroundColor:
-                    active === i
-                      ? "#3e69ff"
-                      : "rgba(232,235,240,0.18)",
+                  backgroundColor: active === i ? "#3e69ff" : "var(--ink-18)",
                 }}
               />
             ))}
@@ -199,8 +172,8 @@ export default function LabsProcess() {
           <button
             onClick={() => setActive(Math.min(steps.length - 1, active + 1))}
             disabled={active === steps.length - 1}
-            className="mono text-[rgba(232,235,240,0.3)] hover:text-blue transition-colors duration-150 disabled:opacity-20 cursor-pointer disabled:cursor-default"
-            style={{ fontSize: "0.68rem" }}
+            className="mono hover:text-blue transition-colors duration-150 disabled:opacity-20 cursor-pointer disabled:cursor-default"
+            style={{ fontSize: "0.68rem", color: "var(--ink-30)" }}
           >
             Next →
           </button>

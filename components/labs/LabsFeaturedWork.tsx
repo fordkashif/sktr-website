@@ -29,13 +29,7 @@ const gridPattern = {
   backgroundSize: "36px 36px",
 };
 
-function TiltCard({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const rawRX = useMotionValue(0);
   const rawRY = useMotionValue(0);
@@ -45,15 +39,8 @@ function TiltCard({
   const onMove = (e: React.MouseEvent) => {
     if (!ref.current) return;
     const r = ref.current.getBoundingClientRect();
-    const nx = ((e.clientX - r.left) / r.width) * 2 - 1;
-    const ny = ((e.clientY - r.top) / r.height) * 2 - 1;
-    rawRY.set(nx * 6);
-    rawRX.set(-ny * 4);
-  };
-
-  const onLeave = () => {
-    rawRX.set(0);
-    rawRY.set(0);
+    rawRY.set(((e.clientX - r.left) / r.width * 2 - 1) * 6);
+    rawRX.set(-((e.clientY - r.top) / r.height * 2 - 1) * 4);
   };
 
   return (
@@ -61,7 +48,7 @@ function TiltCard({
       ref={ref}
       style={{ rotateX, rotateY, transformPerspective: 1000 }}
       onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      onMouseLeave={() => { rawRX.set(0); rawRY.set(0); }}
       className={className}
     >
       {children}
@@ -85,20 +72,13 @@ export default function LabsFeaturedWork() {
         transition={{ duration: 0.7, ease: ease }}
       >
         <div>
-          <p className="mono text-[rgba(232,235,240,0.52)] mb-[0.25rem]">Work</p>
-          <h2
-            className="m-0 font-extrabold leading-[0.96] tracking-[-0.05em]"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.15rem)" }}
-          >
+          <p className="mono mb-[0.25rem]" style={{ color: "var(--ink-52)" }}>Work</p>
+          <h2 className="m-0 font-extrabold leading-[0.96] tracking-[-0.05em]" style={{ fontSize: "clamp(2rem, 4vw, 3.15rem)" }}>
             Selected projects.
           </h2>
         </div>
         <motion.div whileHover={{ x: 3 }} transition={{ duration: 0.18 }}>
-          <Link
-            href="/work"
-            className="mono text-[rgba(232,235,240,0.38)] hover:text-blue transition-colors duration-150 shrink-0"
-            style={{ fontSize: "0.78rem" }}
-          >
+          <Link href="/work" className="mono hover:text-blue transition-colors duration-150 shrink-0" style={{ fontSize: "0.78rem", color: "var(--ink-38)" }}>
             All work →
           </Link>
         </motion.div>
@@ -116,81 +96,38 @@ export default function LabsFeaturedWork() {
             <Link
               href={`/work/${hero.slug}`}
               data-cursor="view"
-              className="group grid grid-cols-1 md:grid-cols-2 border border-[rgba(131,145,190,0.14)] bg-card hover:border-[rgba(62,105,255,0.28)] transition-all duration-300 overflow-hidden block"
+              className="group grid grid-cols-1 md:grid-cols-2 border border-[var(--border-card)] bg-card hover:border-[var(--border-blue-active)] transition-all duration-300 overflow-hidden block"
             >
-              {/* Text */}
               <div className="flex flex-col gap-5 p-8 sm:p-10 md:p-12">
                 <div className="flex items-center justify-between">
-                  <span
-                    className="mono text-blue"
-                    style={{ fontSize: "0.62rem", letterSpacing: "0.18em" }}
-                  >
-                    {hero.category}
-                  </span>
-                  <span
-                    className="mono text-[rgba(232,235,240,0.28)]"
-                    style={{ fontSize: "0.62rem" }}
-                  >
-                    {hero.year}
-                  </span>
+                  <span className="mono text-blue" style={{ fontSize: "0.62rem", letterSpacing: "0.18em" }}>{hero.category}</span>
+                  <span className="mono" style={{ fontSize: "0.62rem", color: "var(--ink-28)" }}>{hero.year}</span>
                 </div>
-                <h3
-                  className="m-0 font-extrabold tracking-[-0.05em] leading-[1.0]"
-                  style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.8rem)" }}
-                >
+                <h3 className="m-0 font-extrabold tracking-[-0.05em] leading-[1.0]" style={{ fontSize: "clamp(1.9rem, 3.5vw, 2.8rem)" }}>
                   {hero.name}
                 </h3>
-                <p
-                  className="m-0 text-[rgba(232,235,240,0.62)] leading-[1.82]"
-                  style={{ fontSize: "0.95rem" }}
-                >
+                <p className="m-0 leading-[1.82]" style={{ fontSize: "0.95rem", color: "var(--ink-62)" }}>
                   {hero.description}
                 </p>
                 <div className="flex flex-wrap gap-[0.4rem]">
                   {hero.tech.slice(0, 4).map((t) => (
-                    <span
-                      key={t}
-                      className="mono text-[rgba(232,235,240,0.34)] border border-[rgba(131,145,190,0.14)] px-2 py-[0.18rem]"
-                      style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}
-                    >
+                    <span key={t} className="mono border border-[var(--border-card)] px-2 py-[0.18rem]" style={{ fontSize: "0.6rem", letterSpacing: "0.08em", color: "var(--ink-34)" }}>
                       {t}
                     </span>
                   ))}
                 </div>
-                <span
-                  className="mono text-[rgba(232,235,240,0.28)] group-hover:text-blue transition-colors duration-200 mt-auto"
-                  style={{ fontSize: "0.72rem" }}
-                >
+                <span className="mono group-hover:text-blue transition-colors duration-200 mt-auto" style={{ fontSize: "0.72rem", color: "var(--ink-28)" }}>
                   View case study →
                 </span>
               </div>
 
-              {/* Visual */}
-              <div
-                className="relative min-h-[240px] md:min-h-0 flex items-center justify-center overflow-hidden"
-                style={{ background: heroVisual.gradient }}
-              >
-                <span
-                  className="font-extrabold tracking-[-0.1em] select-none pointer-events-none"
-                  style={{
-                    fontSize: "clamp(6rem, 15vw, 12rem)",
-                    color: heroVisual.labelColor,
-                    lineHeight: 1,
-                  }}
-                >
+              {/* Visual — always dark, project-specific gradient */}
+              <div className="relative min-h-[240px] md:min-h-0 flex items-center justify-center overflow-hidden" style={{ background: heroVisual.gradient }}>
+                <span className="font-extrabold tracking-[-0.1em] select-none pointer-events-none" style={{ fontSize: "clamp(6rem, 15vw, 12rem)", color: heroVisual.labelColor, lineHeight: 1 }}>
                   {heroVisual.label}
                 </span>
-                <div
-                  className="absolute inset-0 opacity-40 pointer-events-none"
-                  style={gridPattern}
-                />
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)",
-                  }}
-                />
+                <div className="absolute inset-0 opacity-40 pointer-events-none" style={gridPattern} />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%)" }} />
               </div>
             </Link>
           </TiltCard>
@@ -213,68 +150,35 @@ export default function LabsFeaturedWork() {
                 <Link
                   href={`/work/${project.slug}`}
                   data-cursor="view"
-                  className="group flex flex-col border border-[rgba(131,145,190,0.14)] bg-card hover:border-[rgba(62,105,255,0.3)] transition-all duration-300 h-full overflow-hidden block"
+                  className="group flex flex-col border border-[var(--border-card)] bg-card hover:border-[var(--border-blue-active)] transition-all duration-300 h-full overflow-hidden block"
                 >
-                  {/* Gradient thumbnail */}
-                  <div
-                    className="relative h-[120px] flex items-center justify-center overflow-hidden shrink-0"
-                    style={{ background: visual.gradient }}
-                  >
-                    <span
-                      className="font-extrabold tracking-[-0.08em] select-none pointer-events-none"
-                      style={{ fontSize: "4.5rem", color: visual.labelColor, lineHeight: 1 }}
-                    >
+                  <div className="relative h-[120px] flex items-center justify-center overflow-hidden shrink-0" style={{ background: visual.gradient }}>
+                    <span className="font-extrabold tracking-[-0.08em] select-none pointer-events-none" style={{ fontSize: "4.5rem", color: visual.labelColor, lineHeight: 1 }}>
                       {visual.label}
                     </span>
-                    <div
-                      className="absolute inset-0 opacity-30 pointer-events-none"
-                      style={gridPattern}
-                    />
+                    <div className="absolute inset-0 opacity-30 pointer-events-none" style={gridPattern} />
                     <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-card to-transparent" />
                   </div>
 
                   <div className="flex flex-col gap-4 p-7 flex-1">
                     <div className="flex justify-between items-center">
-                      <span
-                        className="mono text-blue"
-                        style={{ fontSize: "0.62rem", letterSpacing: "0.18em" }}
-                      >
-                        {project.category}
-                      </span>
-                      <span
-                        className="mono text-[rgba(232,235,240,0.26)]"
-                        style={{ fontSize: "0.62rem" }}
-                      >
-                        {project.year}
-                      </span>
+                      <span className="mono text-blue" style={{ fontSize: "0.62rem", letterSpacing: "0.18em" }}>{project.category}</span>
+                      <span className="mono" style={{ fontSize: "0.62rem", color: "var(--ink-26)" }}>{project.year}</span>
                     </div>
-                    <h3
-                      className="m-0 font-extrabold tracking-[-0.04em] leading-tight"
-                      style={{ fontSize: "1.4rem" }}
-                    >
+                    <h3 className="m-0 font-extrabold tracking-[-0.04em] leading-tight" style={{ fontSize: "1.4rem" }}>
                       {project.name}
                     </h3>
-                    <p
-                      className="m-0 text-[rgba(232,235,240,0.56)] leading-relaxed flex-1"
-                      style={{ fontSize: "0.88rem" }}
-                    >
+                    <p className="m-0 leading-relaxed flex-1" style={{ fontSize: "0.88rem", color: "var(--ink-56)" }}>
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-[0.4rem]">
                       {project.tech.slice(0, 3).map((t) => (
-                        <span
-                          key={t}
-                          className="mono text-[rgba(232,235,240,0.34)] border border-[rgba(131,145,190,0.14)] px-2 py-[0.18rem]"
-                          style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}
-                        >
+                        <span key={t} className="mono border border-[var(--border-card)] px-2 py-[0.18rem]" style={{ fontSize: "0.6rem", letterSpacing: "0.08em", color: "var(--ink-34)" }}>
                           {t}
                         </span>
                       ))}
                     </div>
-                    <span
-                      className="mono text-[rgba(232,235,240,0.26)] group-hover:text-blue transition-colors duration-200"
-                      style={{ fontSize: "0.7rem" }}
-                    >
+                    <span className="mono group-hover:text-blue transition-colors duration-200" style={{ fontSize: "0.7rem", color: "var(--ink-26)" }}>
                       View project →
                     </span>
                   </div>

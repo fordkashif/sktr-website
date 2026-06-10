@@ -13,7 +13,7 @@ const navLinks = [
 export default function Footer() {
   return (
     <motion.footer
-      className="mt-24 border-t border-[rgba(131,145,190,0.14)] pt-12 pb-6"
+      className="mt-24 border-t border-[var(--border-card)] pt-12 pb-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -23,30 +23,21 @@ export default function Footer() {
         {/* Brand */}
         <div className="flex flex-col gap-5">
           <div>
-            <p
-              className="font-extrabold tracking-[-0.04em] text-ink m-0"
-              style={{ fontSize: "1.05rem" }}
-            >
+            <p className="font-extrabold tracking-[-0.04em] text-ink m-0" style={{ fontSize: "1.05rem" }}>
               SKTR Labs
             </p>
-            <p
-              className="mono text-[rgba(232,235,240,0.28)] m-0 mt-1"
-              style={{ fontSize: "0.6rem", letterSpacing: "0.2em" }}
-            >
+            <p className="mono m-0 mt-1" style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: "var(--ink-28)" }}>
               Software Studio
             </p>
           </div>
-          <p
-            className="m-0 text-[rgba(232,235,240,0.42)] leading-relaxed"
-            style={{ fontSize: "0.86rem" }}
-          >
+          <p className="m-0 leading-relaxed" style={{ fontSize: "0.86rem", color: "var(--ink-42)" }}>
             We design and build mobile apps, web platforms, SaaS products, and
             APIs. Jamaica-based, globally deployed.
           </p>
           <motion.a
             href="mailto:signal@thesktr.com"
-            className="mono text-[rgba(232,235,240,0.36)] w-fit"
-            style={{ fontSize: "0.64rem", letterSpacing: "0.12em" }}
+            className="mono w-fit"
+            style={{ fontSize: "0.64rem", letterSpacing: "0.12em", color: "var(--ink-36)" }}
             whileHover={{ color: "#3e69ff" }}
             transition={{ duration: 0.15 }}
           >
@@ -56,10 +47,7 @@ export default function Footer() {
 
         {/* Navigation */}
         <div className="flex flex-col gap-4">
-          <p
-            className="mono text-[rgba(232,235,240,0.26)] mb-1"
-            style={{ fontSize: "0.56rem", letterSpacing: "0.18em" }}
-          >
+          <p className="mono mb-1" style={{ fontSize: "0.56rem", letterSpacing: "0.18em", color: "var(--ink-26)" }}>
             Navigate
           </p>
           <nav className="flex flex-col gap-3">
@@ -67,8 +55,8 @@ export default function Footer() {
               <Link
                 key={href}
                 href={href}
-                className="text-[rgba(232,235,240,0.5)] hover:text-ink transition-colors duration-150 font-medium w-fit"
-                style={{ fontSize: "0.9rem" }}
+                className="hover:text-ink transition-colors duration-150 font-medium w-fit"
+                style={{ fontSize: "0.9rem", color: "var(--ink-50)" }}
               >
                 {label}
               </Link>
@@ -78,16 +66,10 @@ export default function Footer() {
 
         {/* CTA */}
         <div className="flex flex-col gap-4">
-          <p
-            className="mono text-[rgba(232,235,240,0.26)] mb-1"
-            style={{ fontSize: "0.56rem", letterSpacing: "0.18em" }}
-          >
+          <p className="mono mb-1" style={{ fontSize: "0.56rem", letterSpacing: "0.18em", color: "var(--ink-26)" }}>
             Start a project
           </p>
-          <p
-            className="m-0 text-[rgba(232,235,240,0.46)] leading-relaxed"
-            style={{ fontSize: "0.86rem" }}
-          >
+          <p className="m-0 leading-relaxed" style={{ fontSize: "0.86rem", color: "var(--ink-46)" }}>
             We respond to every inquiry within 48 hours. Tell us what you&apos;re
             building.
           </p>
@@ -109,17 +91,11 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-[rgba(131,145,190,0.08)] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span
-          className="mono text-[rgba(232,235,240,0.2)]"
-          style={{ fontSize: "0.64rem" }}
-        >
+      <div className="border-t border-[var(--border-faint)] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span className="mono" style={{ fontSize: "0.64rem", color: "var(--ink-20)" }}>
           © SKTR Labs 2026
         </span>
-        <span
-          className="mono text-[rgba(232,235,240,0.14)]"
-          style={{ fontSize: "0.64rem" }}
-        >
+        <span className="mono" style={{ fontSize: "0.64rem", color: "var(--ink-14)" }}>
           Part of the SKTR Group
         </span>
       </div>

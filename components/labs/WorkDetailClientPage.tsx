@@ -90,23 +90,23 @@ export default function WorkDetailClientPage({ project }: { project: Project }) 
         <div className={cx}>
           {project.overview && (
             <motion.section className="mt-16" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.7, ease: ease }}>
-              <p className="mono text-[rgba(232,235,240,0.38)] mb-5" style={{ fontSize: "0.64rem", letterSpacing: "0.14em" }}>Overview</p>
-              <p className="text-[rgba(232,235,240,0.8)] leading-[1.85] max-w-[56rem]" style={{ fontSize: "clamp(1rem, 1.3vw, 1.08rem)" }}>{project.overview}</p>
+              <p className="mono mb-5" style={{ color: "var(--ink-38)", fontSize: "0.64rem", letterSpacing: "0.14em" }}>Overview</p>
+              <p className="leading-[1.85] max-w-[56rem]" style={{ color: "var(--ink-80)", fontSize: "clamp(1rem, 1.3vw, 1.08rem)" }}>{project.overview}</p>
             </motion.section>
           )}
 
           {(project.problem || project.solution) && (
-            <motion.section className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-px border border-[rgba(131,145,190,0.12)] bg-[rgba(131,145,190,0.1)]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.7, ease: ease }}>
+            <motion.section className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-px border border-[var(--border-section)] bg-[var(--border-section)]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.7, ease: ease }}>
               {project.problem && (
                 <div className="p-8 sm:p-10 bg-card">
-                  <p className="mono text-[rgba(232,235,240,0.38)] mb-5" style={{ fontSize: "0.64rem", letterSpacing: "0.14em" }}>Problem</p>
-                  <p className="m-0 text-[rgba(232,235,240,0.72)] leading-[1.8]" style={{ fontSize: "0.95rem" }}>{project.problem}</p>
+                  <p className="mono mb-5" style={{ color: "var(--ink-38)", fontSize: "0.64rem", letterSpacing: "0.14em" }}>Problem</p>
+                  <p className="m-0 leading-[1.8]" style={{ color: "var(--ink-72)", fontSize: "0.95rem" }}>{project.problem}</p>
                 </div>
               )}
               {project.solution && (
                 <div className="p-8 sm:p-10 bg-card">
-                  <p className="mono text-[rgba(232,235,240,0.38)] mb-5" style={{ fontSize: "0.64rem", letterSpacing: "0.14em" }}>Solution</p>
-                  <p className="m-0 text-[rgba(232,235,240,0.72)] leading-[1.8]" style={{ fontSize: "0.95rem" }}>{project.solution}</p>
+                  <p className="mono mb-5" style={{ color: "var(--ink-38)", fontSize: "0.64rem", letterSpacing: "0.14em" }}>Solution</p>
+                  <p className="m-0 leading-[1.8]" style={{ color: "var(--ink-72)", fontSize: "0.95rem" }}>{project.solution}</p>
                 </div>
               )}
             </motion.section>
@@ -115,15 +115,15 @@ export default function WorkDetailClientPage({ project }: { project: Project }) 
           {project.outcome && (
             <motion.section className="mt-12 p-8 sm:p-10 border border-[rgba(62,105,255,0.2)] bg-[rgba(62,105,255,0.04)]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, ease: ease }}>
               <p className="mono text-blue mb-5" style={{ fontSize: "0.64rem", letterSpacing: "0.16em" }}>Outcome</p>
-              <p className="m-0 text-[rgba(232,235,240,0.8)] leading-[1.85] max-w-[52rem]" style={{ fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}>{project.outcome}</p>
+              <p className="m-0 leading-[1.85] max-w-[52rem]" style={{ color: "var(--ink-80)", fontSize: "clamp(0.95rem, 1.2vw, 1.05rem)" }}>{project.outcome}</p>
             </motion.section>
           )}
 
           <motion.section className="mt-20 mb-4" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, ease: ease }}>
-            <div className="border border-[rgba(62,105,255,0.28)] px-8 sm:px-14 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+            <div className="border border-[var(--border-blue-active)] px-8 sm:px-14 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
               <div>
                 <h2 className="m-0 font-extrabold tracking-[-0.04em]" style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>Build something like this?</h2>
-                <p className="mt-3 m-0 text-[rgba(232,235,240,0.56)]" style={{ fontSize: "0.95rem" }}>Tell us about your project and we&apos;ll take it from there.</p>
+                <p className="mt-3 m-0" style={{ fontSize: "0.95rem", color: "var(--ink-56)" }}>Tell us about your project and we&apos;ll take it from there.</p>
               </div>
               <motion.div className="shrink-0" whileHover={{ scale: 1.02, boxShadow: "0 8px 28px rgba(62,105,255,0.32)" }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 400, damping: 22 }}>
                 <Link href="/contact" className="inline-flex items-center gap-2 min-h-[3rem] px-8 bg-blue text-white font-semibold border border-blue" style={{ fontSize: "0.88rem", letterSpacing: "0.04em" }}>Start a project →</Link>

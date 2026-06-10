@@ -69,11 +69,11 @@ export default function LabsTechStrip() {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, ease: ease }}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[rgba(131,145,190,0.12)]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[var(--border-section)]">
         {stats.map((s, i) => (
           <motion.div
             key={s.label}
-            className="flex flex-col gap-3 px-7 py-8 border-b border-r border-[rgba(131,145,190,0.1)]"
+            className="flex flex-col gap-3 px-7 py-8 border-b border-r border-[var(--border-section)]"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -92,8 +92,8 @@ export default function LabsTechStrip() {
               {s.label.toUpperCase()}
             </span>
             <p
-              className="m-0 text-[rgba(232,235,240,0.44)] leading-[1.75]"
-              style={{ fontSize: "0.84rem" }}
+              className="m-0 leading-[1.75]"
+              style={{ fontSize: "0.84rem", color: "var(--ink-44)" }}
             >
               {s.desc}
             </p>

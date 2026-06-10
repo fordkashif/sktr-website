@@ -91,7 +91,7 @@ export default function WorkClientPage() {
                 const visual = visuals[project.slug] ?? visuals["client-work"];
                 return (
                   <motion.div key={project.slug} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.6, delay: i * 0.08, ease: ease }}>
-                    <Link href={`/work/${project.slug}`} className="group flex flex-col border border-[rgba(131,145,190,0.14)] bg-card hover:border-[rgba(62,105,255,0.28)] transition-all duration-300 h-full overflow-hidden block">
+                    <Link href={`/work/${project.slug}`} className="group flex flex-col border border-[var(--border-card)] bg-card hover:border-[var(--border-blue-active)] transition-all duration-300 h-full overflow-hidden block">
                       <div className="relative h-[160px] flex items-center justify-center overflow-hidden shrink-0" style={{ background: visual.gradient }}>
                         <span className="font-extrabold tracking-[-0.08em] select-none pointer-events-none" style={{ fontSize: "5.5rem", color: visual.labelColor, lineHeight: 1 }}>
                           {visual.label}
@@ -102,16 +102,16 @@ export default function WorkClientPage() {
                       <div className="flex flex-col gap-4 p-7 flex-1">
                         <div className="flex justify-between items-center">
                           <span className="mono text-blue" style={{ fontSize: "0.62rem", letterSpacing: "0.16em" }}>{project.category}</span>
-                          <span className="mono text-[rgba(232,235,240,0.28)]" style={{ fontSize: "0.62rem" }}>{project.year}</span>
+                          <span className="mono" style={{ color: "var(--ink-28)", fontSize: "0.62rem" }}>{project.year}</span>
                         </div>
                         <h2 className="m-0 font-extrabold tracking-[-0.04em] leading-tight" style={{ fontSize: "1.55rem" }}>{project.name}</h2>
-                        <p className="m-0 text-[rgba(232,235,240,0.62)] leading-relaxed flex-1" style={{ fontSize: "0.9rem" }}>{project.description}</p>
+                        <p className="m-0 leading-relaxed flex-1" style={{ color: "var(--ink-62)", fontSize: "0.9rem" }}>{project.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {project.tech.slice(0, 4).map((t) => (
-                            <span key={t} className="mono text-[rgba(232,235,240,0.36)] border border-[rgba(131,145,190,0.16)] px-2 py-[0.2rem]" style={{ fontSize: "0.62rem", letterSpacing: "0.08em" }}>{t}</span>
+                            <span key={t} className="mono border border-[var(--border-card)] px-2 py-[0.2rem]" style={{ fontSize: "0.62rem", letterSpacing: "0.08em", color: "var(--ink-36)" }}>{t}</span>
                           ))}
                         </div>
-                        <span className="mono text-[rgba(232,235,240,0.3)] group-hover:text-blue transition-colors duration-150" style={{ fontSize: "0.72rem" }}>View project →</span>
+                        <span className="mono group-hover:text-blue transition-colors duration-150" style={{ fontSize: "0.72rem", color: "var(--ink-30)" }}>View project →</span>
                       </div>
                     </Link>
                   </motion.div>
@@ -121,10 +121,10 @@ export default function WorkClientPage() {
           </section>
 
           <motion.section className="mt-20 mb-4" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.7, ease: ease }}>
-            <div className="border border-[rgba(62,105,255,0.28)] px-8 sm:px-14 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+            <div className="border border-[var(--border-blue-active)] px-8 sm:px-14 py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
               <div>
                 <h2 className="m-0 font-extrabold tracking-[-0.04em]" style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}>Want to work with us?</h2>
-                <p className="mt-3 m-0 text-[rgba(232,235,240,0.56)]" style={{ fontSize: "0.95rem" }}>Tell us what you&apos;re building. We&apos;ll take it from there.</p>
+                <p className="mt-3 m-0" style={{ fontSize: "0.95rem", color: "var(--ink-56)" }}>Tell us what you&apos;re building. We&apos;ll take it from there.</p>
               </div>
               <motion.div className="shrink-0" whileHover={{ scale: 1.02, boxShadow: "0 8px 28px rgba(62,105,255,0.32)" }} whileTap={{ scale: 0.97 }} transition={{ type: "spring", stiffness: 400, damping: 22 }}>
                 <Link href="/contact" className="inline-flex items-center gap-2 min-h-[3rem] px-8 bg-blue text-white font-semibold border border-blue" style={{ fontSize: "0.88rem", letterSpacing: "0.04em" }}>

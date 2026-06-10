@@ -36,7 +36,7 @@ function SelectGrid({ options, selected, onSelect }: { options: string[]; select
   return (
     <div className="grid grid-cols-2 gap-3">
       {options.map((opt) => (
-        <button key={opt} onClick={() => onSelect(opt)} className="text-left p-5 border cursor-pointer transition-all duration-150" style={{ borderColor: selected === opt ? "rgba(62,105,255,0.7)" : "rgba(131,145,190,0.2)", backgroundColor: selected === opt ? "rgba(62,105,255,0.08)" : "transparent" }}>
+        <button key={opt} onClick={() => onSelect(opt)} className="text-left p-5 border cursor-pointer transition-all duration-150" style={{ borderColor: selected === opt ? "rgba(62,105,255,0.7)" : "var(--border-mid)", backgroundColor: selected === opt ? "rgba(62,105,255,0.08)" : "transparent" }}>
           <span className="font-semibold tracking-[-0.02em] text-ink leading-tight block" style={{ fontSize: "0.92rem" }}>{opt}</span>
         </button>
       ))}
@@ -66,8 +66,8 @@ export default function ContactClientPage() {
     } catch { set({ loading: false, error: "Network error. Please try again." }); }
   }
 
-  const inputClass = "w-full min-h-[2.8rem] px-4 bg-transparent text-ink border border-[rgba(131,145,190,0.2)] outline-none placeholder:text-[rgba(232,235,240,0.22)] focus:border-[rgba(62,105,255,0.55)] transition-colors duration-200 disabled:opacity-40";
-  const labelClass = "mono text-[rgba(232,235,240,0.46)] block mb-2";
+  const inputClass = "w-full min-h-[2.8rem] px-4 bg-transparent text-ink border border-[var(--border-mid)] outline-none placeholder:text-[var(--ink-22)] focus:border-[rgba(62,105,255,0.55)] transition-colors duration-200 disabled:opacity-40";
+  const labelClass = "mono text-[var(--ink-46)] block mb-2";
 
   return (
     <MotionConfig reducedMotion="user">
@@ -129,9 +129,9 @@ export default function ContactClientPage() {
                   <motion.div key="wizard" className="flex flex-col gap-8" initial={{ opacity: 1 }}>
                     <div className="flex items-center gap-[0.45rem]">
                       {[0, 1, 2, 3].map((i) => (
-                        <motion.div key={i} className="h-[5px] rounded-full" animate={{ width: state.step === i ? 20 : 6, backgroundColor: state.step >= i ? "#3e69ff" : "rgba(232,235,240,0.18)" }} transition={{ duration: 0.25 }} />
+                        <motion.div key={i} className="h-[5px] rounded-full" animate={{ width: state.step === i ? 20 : 6, backgroundColor: state.step >= i ? "#3e69ff" : "var(--ink-18)" }} transition={{ duration: 0.25 }} />
                       ))}
-                      <span className="mono text-[rgba(232,235,240,0.26)] ml-2" style={{ fontSize: "0.58rem" }}>{state.step + 1} / 4</span>
+                      <span className="mono ml-2" style={{ color: "var(--ink-26)", fontSize: "0.58rem" }}>{state.step + 1} / 4</span>
                     </div>
                     <div className="overflow-hidden">
                       <AnimatePresence mode="wait" custom={state.direction}>
@@ -170,7 +170,7 @@ export default function ContactClientPage() {
                       </AnimatePresence>
                     </div>
                     {state.step > 0 && state.step < 4 && (
-                      <button onClick={back} className="mono text-[rgba(232,235,240,0.3)] hover:text-ink transition-colors duration-150 cursor-pointer self-start" style={{ fontSize: "0.68rem" }}>← Back</button>
+                      <button onClick={back} className="mono hover:text-ink transition-colors duration-150 cursor-pointer self-start" style={{ fontSize: "0.68rem", color: "var(--ink-30)" }}>← Back</button>
                     )}
                   </motion.div>
                 )}
@@ -179,13 +179,13 @@ export default function ContactClientPage() {
 
             {/* Contact info */}
             <motion.div className="flex flex-col gap-6" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2, ease: ease }}>
-              <div className="border border-[rgba(131,145,190,0.14)] bg-card p-8 flex flex-col gap-4">
-                <p className="mono text-[rgba(232,235,240,0.36)] m-0" style={{ fontSize: "0.62rem", letterSpacing: "0.14em" }}>Direct contact</p>
+              <div className="border border-[var(--border-card)] bg-card p-8 flex flex-col gap-4">
+                <p className="mono m-0" style={{ color: "var(--ink-36)", fontSize: "0.62rem", letterSpacing: "0.14em" }}>Direct contact</p>
                 <motion.a href="mailto:signal@thesktr.com" className="text-ink hover:text-blue transition-colors duration-150 font-semibold" style={{ fontSize: "1.05rem" }} whileHover={{ x: 3 }} transition={{ duration: 0.15 }}>signal@thesktr.com</motion.a>
                 <p className="m-0 text-[rgba(232,235,240,0.46)] leading-[1.72]" style={{ fontSize: "0.88rem" }}>For general enquiries, partnership conversations, or anything that doesn&apos;t fit the form.</p>
               </div>
-              <div className="border border-[rgba(131,145,190,0.14)] bg-card p-8 flex flex-col gap-3">
-                <p className="mono text-[rgba(232,235,240,0.36)] m-0" style={{ fontSize: "0.62rem", letterSpacing: "0.14em" }}>What happens next</p>
+              <div className="border border-[var(--border-card)] bg-card p-8 flex flex-col gap-3">
+                <p className="mono m-0" style={{ color: "var(--ink-36)", fontSize: "0.62rem", letterSpacing: "0.14em" }}>What happens next</p>
                 <ul className="m-0 p-0 list-none flex flex-col gap-3 text-[rgba(232,235,240,0.6)]" style={{ fontSize: "0.88rem" }}>
                   {["We read your submission", "We reply with questions or a scope outline", "We agree on approach and timeline", "We build"].map((item, i) => (
                     <li key={item} className="flex items-start gap-3">
@@ -195,8 +195,8 @@ export default function ContactClientPage() {
                   ))}
                 </ul>
               </div>
-              <div className="border border-[rgba(131,145,190,0.14)] bg-card p-8 flex flex-col gap-2">
-                <p className="mono text-[rgba(232,235,240,0.36)] m-0" style={{ fontSize: "0.62rem", letterSpacing: "0.14em" }}>Response time</p>
+              <div className="border border-[var(--border-card)] bg-card p-8 flex flex-col gap-2">
+                <p className="mono m-0" style={{ color: "var(--ink-36)", fontSize: "0.62rem", letterSpacing: "0.14em" }}>Response time</p>
                 <p className="m-0 text-[rgba(232,235,240,0.68)] leading-[1.72]" style={{ fontSize: "0.9rem" }}>We respond to every message within <span className="text-ink font-semibold">48 hours</span>. If your timeline is tighter, say so in the description.</p>
               </div>
             </motion.div>

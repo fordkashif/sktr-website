@@ -103,7 +103,7 @@ export default function LabsHero() {
               animate={{ y: 0 }}
               transition={{ duration: 0.75, delay: 0.3, ease: ease }}
             >
-              We build
+              Your idea.
             </motion.span>
           </div>
 
@@ -111,7 +111,7 @@ export default function LabsHero() {
           <div style={{ overflow: "hidden", lineHeight: 0.88 }}>
             <motion.span
               className="inline-block"
-              style={{ fontSize: "clamp(5rem, 13vw, 11rem)" }}
+              style={{ fontSize: "clamp(3.5rem, 10vw, 11rem)" }}
               initial={{ y: "110%" }}
               animate={{ y: 0 }}
               transition={{ duration: 0.9, delay: 0.45, ease: ease }}
@@ -143,7 +143,7 @@ export default function LabsHero() {
                   times: [0, 0.2, 0.4, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.88, 0.94, 1],
                 }}
               >
-                SOFTWARE.
+                BUILT RIGHT.
               </motion.span>
             </motion.span>
           </div>
@@ -157,7 +157,7 @@ export default function LabsHero() {
               animate={{ y: 0 }}
               transition={{ duration: 0.75, delay: 0.62, ease: ease }}
             >
-              Done properly.
+              Custom software without the confusion.
             </motion.span>
           </div>
         </motion.h1>
@@ -170,8 +170,8 @@ export default function LabsHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.82, ease: ease }}
         >
-          A software studio. We design and build mobile apps, web platforms,
-          SaaS products, and APIs.
+          We design and develop mobile apps, web platforms, SaaS tools,
+          and APIs for businesses ready to move faster.
         </motion.p>
 
         {/* CTAs — magnetic */}

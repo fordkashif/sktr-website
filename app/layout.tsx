@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import CustomCursor from "@/components/CustomCursor";
 import NavigationProgress from "@/components/NavigationProgress";
 import NoiseOverlay from "@/components/NoiseOverlay";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -85,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -93,11 +94,13 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <CustomCursor />
-        <NavigationProgress />
-        <NoiseOverlay />
-        {children}
-        <Analytics />
+        <ThemeProvider>
+          <CustomCursor />
+          <NavigationProgress />
+          <NoiseOverlay />
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

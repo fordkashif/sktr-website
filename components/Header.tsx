@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -73,10 +74,10 @@ export default function Header() {
           opacity: hidden ? 0 : 1,
           y: hidden ? "-110%" : 0,
           backgroundColor:
-            solid || mobileOpen ? "rgba(5,6,8,0.96)" : "rgba(0,0,0,0)",
+            solid || mobileOpen ? "var(--surface-header)" : "rgba(0,0,0,0)",
           borderColor:
             solid || mobileOpen
-              ? "rgba(131,145,190,0.26)"
+              ? "var(--border-header)"
               : "rgba(131,145,190,0)",
         }}
         transition={{
@@ -133,6 +134,11 @@ export default function Header() {
             })}
           </div>
         </nav>
+
+        {/* Theme toggle — desktop */}
+        <div className="hidden md:flex flex-none items-center">
+          <ThemeToggle />
+        </div>
 
         {/* CTA — desktop */}
         <div className="hidden md:flex flex-none justify-end">
@@ -192,7 +198,7 @@ export default function Header() {
         {mobileOpen && (
           <motion.div
             className="fixed inset-0 z-[15] flex flex-col items-center justify-center gap-6 md:hidden overflow-y-auto py-24"
-            style={{ backgroundColor: "rgba(5,6,8,0.98)" }}
+            style={{ backgroundColor: "var(--surface-mobile-nav)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -228,6 +234,7 @@ export default function Header() {
                 duration: 0.38,
                 ease: ease,
               }}
+              className="flex flex-col items-center gap-5"
             >
               <Link
                 href="/contact"
@@ -236,6 +243,7 @@ export default function Header() {
               >
                 Start a project
               </Link>
+              <ThemeToggle />
             </motion.div>
           </motion.div>
         )}

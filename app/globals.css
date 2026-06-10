@@ -16,6 +16,109 @@
   --muted: rgba(232, 235, 240, 0.52);
   --line: rgba(131, 145, 190, 0.2);
   --line-strong: rgba(62, 105, 255, 0.92);
+  /* Semantic surface tokens */
+  --surface-header: rgba(5, 6, 8, 0.96);
+  --surface-mobile-nav: rgba(5, 6, 8, 0.98);
+  --border-header: rgba(131, 145, 190, 0.26);
+  /* Ink opacity scale */
+  --ink-80: rgba(232, 235, 240, 0.80);
+  --ink-72: rgba(232, 235, 240, 0.72);
+  --ink-68: rgba(232, 235, 240, 0.68);
+  --ink-64: rgba(232, 235, 240, 0.64);
+  --ink-62: rgba(232, 235, 240, 0.62);
+  --ink-60: rgba(232, 235, 240, 0.60);
+  --ink-58: rgba(232, 235, 240, 0.58);
+  --ink-56: rgba(232, 235, 240, 0.56);
+  --ink-52: rgba(232, 235, 240, 0.52);
+  --ink-50: rgba(232, 235, 240, 0.50);
+  --ink-46: rgba(232, 235, 240, 0.46);
+  --ink-44: rgba(232, 235, 240, 0.44);
+  --ink-42: rgba(232, 235, 240, 0.42);
+  --ink-38: rgba(232, 235, 240, 0.38);
+  --ink-36: rgba(232, 235, 240, 0.36);
+  --ink-34: rgba(232, 235, 240, 0.34);
+  --ink-30: rgba(232, 235, 240, 0.30);
+  --ink-28: rgba(232, 235, 240, 0.28);
+  --ink-26: rgba(232, 235, 240, 0.26);
+  --ink-22: rgba(232, 235, 240, 0.22);
+  --ink-20: rgba(232, 235, 240, 0.20);
+  --ink-18: rgba(232, 235, 240, 0.18);
+  --ink-16: rgba(232, 235, 240, 0.16);
+  --ink-14: rgba(232, 235, 240, 0.14);
+  /* Border scale */
+  --border-card: rgba(131, 145, 190, 0.14);
+  --border-section: rgba(131, 145, 190, 0.12);
+  --border-mid: rgba(131, 145, 190, 0.20);
+  --border-faint: rgba(131, 145, 190, 0.08);
+  --border-blue: rgba(62, 105, 255, 0.22);
+  --border-blue-active: rgba(62, 105, 255, 0.28);
+}
+
+/* ── Light mode ─────────────────────────────────────── */
+html.light {
+  --color-base: #f2f4f8;
+  --color-panel: #e8ebf2;
+  --color-card: #ffffff;
+  --color-card-active: #edf0f7;
+  --color-ink: #0a0c14;
+  --ink: #0a0c14;
+  --muted: rgba(10, 12, 20, 0.52);
+  --line: rgba(0, 10, 60, 0.1);
+  --surface-header: rgba(242, 244, 248, 0.96);
+  --surface-mobile-nav: rgba(242, 244, 248, 0.99);
+  --border-header: rgba(0, 10, 60, 0.14);
+  /* Ink opacity scale — maps to dark text in light mode */
+  --ink-80: rgba(10, 12, 20, 0.80);
+  --ink-72: rgba(10, 12, 20, 0.72);
+  --ink-68: rgba(10, 12, 20, 0.68);
+  --ink-64: rgba(10, 12, 20, 0.64);
+  --ink-62: rgba(10, 12, 20, 0.62);
+  --ink-60: rgba(10, 12, 20, 0.60);
+  --ink-58: rgba(10, 12, 20, 0.58);
+  --ink-56: rgba(10, 12, 20, 0.56);
+  --ink-52: rgba(10, 12, 20, 0.52);
+  --ink-50: rgba(10, 12, 20, 0.50);
+  --ink-46: rgba(10, 12, 20, 0.46);
+  --ink-44: rgba(10, 12, 20, 0.44);
+  --ink-42: rgba(10, 12, 20, 0.42);
+  --ink-38: rgba(10, 12, 20, 0.38);
+  --ink-36: rgba(10, 12, 20, 0.36);
+  --ink-34: rgba(10, 12, 20, 0.34);
+  --ink-30: rgba(10, 12, 20, 0.30);
+  --ink-28: rgba(10, 12, 20, 0.28);
+  --ink-26: rgba(10, 12, 20, 0.26);
+  --ink-22: rgba(10, 12, 20, 0.22);
+  --ink-20: rgba(10, 12, 20, 0.20);
+  --ink-18: rgba(10, 12, 20, 0.18);
+  --ink-16: rgba(10, 12, 20, 0.16);
+  --ink-14: rgba(10, 12, 20, 0.14);
+  /* Border scale */
+  --border-card: rgba(0, 10, 60, 0.12);
+  --border-section: rgba(0, 10, 60, 0.10);
+  --border-mid: rgba(0, 10, 60, 0.18);
+  --border-faint: rgba(0, 10, 60, 0.06);
+  --border-blue: rgba(62, 105, 255, 0.24);
+  --border-blue-active: rgba(62, 105, 255, 0.36);
+}
+
+html.light body {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(62, 105, 255, 0.06), transparent 24%),
+    linear-gradient(180deg, #edf0f7 0%, #f2f4f8 100%);
+  color: var(--ink);
+}
+
+html.light body::before {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 100% 4px, 4px 100%;
+  opacity: 0.5;
+}
+
+/* Smooth theme transitions */
+html, body, body::before {
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 *,
