@@ -1,27 +1,51 @@
 "use client";
 import { ease } from "@/lib/motion";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
+import MagneticWrapper from "@/components/MagneticWrapper";
 
 export default function LabsHero() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
 
+  // Scroll-linked transforms
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  // Mouse parallax — normalized -1 to 1
+  const rawMX = useMotionValue(0);
+  const rawMY = useMotionValue(0);
+
+  // Each layer gets different stiffness = different apparent depth
+  const glowX  = useSpring(useTransform(rawMX, [-1, 1], [-22, 22]), { stiffness: 42, damping: 20 });
+  const glowY  = useSpring(useTransform(rawMY, [-1, 1], [-14, 14]), { stiffness: 42, damping: 20 });
+  const h1X    = useSpring(useTransform(rawMX, [-1, 1], [-10, 10]), { stiffness: 55, damping: 22 });
+  const h1Y    = useSpring(useTransform(rawMY, [-1, 1], [-6,  6 ]), { stiffness: 55, damping: 22 });
+  const subX   = useSpring(useTransform(rawMX, [-1, 1], [-5,  5 ]), { stiffness: 65, damping: 24 });
+  const subY   = useSpring(useTransform(rawMY, [-1, 1], [-3,  3 ]), { stiffness: 65, damping: 24 });
+
+  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const { width, height, left, top } = e.currentTarget.getBoundingClientRect();
+    rawMX.set(((e.clientX - left) / width) * 2 - 1);
+    rawMY.set(((e.clientY - top) / height) * 2 - 1);
+  };
+
+  const onMouseLeave = () => {
+    rawMX.set(0);
+    rawMY.set(0);
+  };
 
   return (
     <section
       ref={ref}
       className="relative min-h-[100svh] overflow-hidden flex flex-col"
       id="top"
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
     >
-      {/* Background */}
+      {/* ── Background ── */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <video
           autoPlay
@@ -36,25 +60,21 @@ export default function LabsHero() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#040507]/92 via-[#050608]/60 to-[#050608]/72" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#050608]/20 to-[#050608]/88" />
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#050608] to-transparent" />
-        {/* Primary glow — behind headline */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 55% 55% at 14% 38%, rgba(62,105,255,0.22) 0%, transparent 65%)",
-          }}
-        />
-        {/* Secondary glow — upper right */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 40% 40% at 88% 12%, rgba(62,105,255,0.09) 0%, transparent 70%)",
-          }}
-        />
+
+        {/* Parallax glows — move most (deepest layer) */}
+        <motion.div className="absolute inset-0 pointer-events-none" style={{ x: glowX, y: glowY }}>
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse 55% 55% at 14% 38%, rgba(62,105,255,0.22) 0%, transparent 65%)" }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse 40% 40% at 88% 12%, rgba(62,105,255,0.09) 0%, transparent 70%)" }}
+          />
+        </motion.div>
       </motion.div>
 
-      {/* Content */}
+      {/* ── Content ── */}
       <motion.div
         className="relative z-10 flex flex-col justify-end min-h-[100svh] w-full max-w-[1700px] mx-auto px-4 sm:px-8 pt-[6rem] sm:pt-[8.2rem] pb-16 sm:pb-28"
         style={{ y: contentY, opacity: contentOpacity }}
@@ -69,9 +89,12 @@ export default function LabsHero() {
           SKTR Labs
         </motion.p>
 
-        {/* Headline */}
-        <h1 className="m-0 font-extrabold tracking-[-0.06em] leading-none">
-          {/* Line 1 — small lead-in */}
+        {/* Headline — parallax layer */}
+        <motion.h1
+          className="m-0 font-extrabold tracking-[-0.06em] leading-none"
+          style={{ x: h1X, y: h1Y }}
+        >
+          {/* Line 1 */}
           <div style={{ overflow: "hidden" }}>
             <motion.span
               className="inline-block text-[rgba(232,235,240,0.55)] font-semibold tracking-[-0.02em]"
@@ -84,7 +107,7 @@ export default function LabsHero() {
             </motion.span>
           </div>
 
-          {/* Line 2 — massive word */}
+          {/* Line 2 — massive with glitch */}
           <div style={{ overflow: "hidden", lineHeight: 0.88 }}>
             <motion.span
               className="inline-block"
@@ -125,7 +148,7 @@ export default function LabsHero() {
             </motion.span>
           </div>
 
-          {/* Line 3 — punchy close */}
+          {/* Line 3 */}
           <div style={{ overflow: "hidden" }}>
             <motion.span
               className="inline-block text-blue font-extrabold tracking-[-0.04em]"
@@ -137,12 +160,12 @@ export default function LabsHero() {
               Done properly.
             </motion.span>
           </div>
-        </h1>
+        </motion.h1>
 
-        {/* Subtitle */}
+        {/* Subtitle — parallax layer */}
         <motion.p
           className="mt-7 text-[rgba(232,235,240,0.72)] leading-relaxed font-normal max-w-[34rem]"
-          style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.28rem)" }}
+          style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.28rem)", x: subX, y: subY }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.82, ease: ease }}
@@ -151,49 +174,41 @@ export default function LabsHero() {
           SaaS products, and APIs.
         </motion.p>
 
-        {/* CTAs */}
+        {/* CTAs — magnetic */}
         <motion.div
           className="mt-10 flex gap-4 flex-wrap items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1.02, ease: ease }}
         >
-          <motion.div
-            className="relative"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 22 }}
-          >
-            {/* Pulse ring behind primary CTA */}
-            <span
-              className="absolute inset-0 pointer-events-none"
-              style={{ animation: "pulse-ring 2.4s ease-out infinite" }}
-            />
-            <Link
-              href="/contact"
-              className="relative inline-flex items-center gap-2 min-h-[3rem] px-7 bg-blue text-white font-semibold border border-blue"
-              style={{
-                fontSize: "0.88rem",
-                letterSpacing: "0.04em",
-                boxShadow: "0 8px 32px rgba(62,105,255,0.35)",
-              }}
-            >
-              Start a project
-            </Link>
-          </motion.div>
+          <MagneticWrapper>
+            <div className="relative">
+              <span
+                className="absolute inset-0 pointer-events-none"
+                style={{ animation: "pulse-ring 2.4s ease-out infinite" }}
+              />
+              <Link
+                href="/contact"
+                className="relative inline-flex items-center gap-2 min-h-[3rem] px-7 bg-blue text-white font-semibold border border-blue"
+                style={{
+                  fontSize: "0.88rem",
+                  letterSpacing: "0.04em",
+                  boxShadow: "0 8px 32px rgba(62,105,255,0.35)",
+                }}
+              >
+                Start a project
+              </Link>
+            </div>
+          </MagneticWrapper>
 
-          <motion.div
-            whileHover={{ borderColor: "rgba(232,235,240,0.48)", color: "#e8ebf0" }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ duration: 0.18 }}
-          >
+          <MagneticWrapper>
             <Link
               href="/work"
-              className="inline-flex items-center gap-2 min-h-[3rem] px-7 border border-[rgba(232,235,240,0.22)] text-[rgba(232,235,240,0.72)] mono"
+              className="inline-flex items-center gap-2 min-h-[3rem] px-7 border border-[rgba(232,235,240,0.22)] text-[rgba(232,235,240,0.72)] mono hover:border-[rgba(232,235,240,0.48)] hover:text-[#e8ebf0] transition-colors duration-180"
             >
               See our work
             </Link>
-          </motion.div>
+          </MagneticWrapper>
         </motion.div>
 
         {/* Scroll hint */}

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import CustomCursor from "@/components/CustomCursor";
+import NavigationProgress from "@/components/NavigationProgress";
+import NoiseOverlay from "@/components/NoiseOverlay";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -90,6 +93,9 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <CustomCursor />
+        <NavigationProgress />
+        <NoiseOverlay />
         {children}
         <Analytics />
       </body>

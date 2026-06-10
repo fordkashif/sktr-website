@@ -83,3 +83,10 @@ h1, h2, h3, h4 {
   0%   { box-shadow: 0 0 0 0   rgba(62, 105, 255, 0.45); opacity: 1; }
   100% { box-shadow: 0 0 0 18px rgba(62, 105, 255, 0);    opacity: 0; }
 }
+
+/* Custom cursor — only applied once JS confirms fine pointer device */
+[data-custom-cursor] *,
+[data-custom-cursor] *::before,
+[data-custom-cursor] *::after {
+  cursor: none !important;
+}
