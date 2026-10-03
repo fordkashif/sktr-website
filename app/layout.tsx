@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import CustomCursor from "@/components/CustomCursor";
 import NavigationProgress from "@/components/NavigationProgress";
@@ -7,10 +7,17 @@ import NoiseOverlay from "@/components/NoiseOverlay";
 import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+// The font files live in the project, so a build never depends on Google Fonts being reachable
+const outfit = localFont({
+  src: [
+    { path: "./fonts/outfit-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/outfit-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/outfit-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/outfit-latin-700-normal.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/outfit-latin-800-normal.woff2", weight: "800", style: "normal" },
+  ],
   variable: "--font-outfit",
+  display: "swap",
 });
 
 const BASE_URL = "https://thesktr.com";
@@ -23,9 +30,6 @@ export const metadata: Metadata = {
   },
   description:
     "SKTR Labs is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs.",
-  alternates: {
-    canonical: BASE_URL,
-  },
   openGraph: {
     title: "SKTR Labs — Software Studio",
     description:

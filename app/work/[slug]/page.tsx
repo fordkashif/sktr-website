@@ -20,6 +20,7 @@ export async function generateMetadata({
 
   return {
     title: project.name,
+    alternates: { canonical: `/work/${project.slug}` },
     description: project.description,
     openGraph: {
       title: `${project.name} — SKTR Labs`,

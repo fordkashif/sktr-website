@@ -25,10 +25,10 @@ const stepQuestions = ["What are you building?", "Where in the process?", "What'
 
 type State = {
   step: number; direction: number; service: string; stage: string; budget: string;
-  name: string; email: string; description: string; loading: boolean; error: string;
+  name: string; email: string; website: string; startedAt: number; description: string; loading: boolean; error: string;
 };
 
-const initial: State = { step: 0, direction: 1, service: "", stage: "", budget: "", name: "", email: "", description: "", loading: false, error: "" };
+const initial: State = { step: 0, direction: 1, service: "", stage: "", budget: "", name: "", email: "", website: "", startedAt: 0, description: "", loading: false, error: "" };
 
 const cx = "max-w-[1200px] mx-auto w-full px-8 sm:px-14 lg:px-20";
 
@@ -51,7 +51,8 @@ export default function ContactClientPage() {
   function advance() { setState((prev) => ({ ...prev, step: prev.step + 1, direction: 1 })); }
   function back() { setState((prev) => ({ ...prev, step: prev.step - 1, direction: -1 })); }
   function selectAndAdvance(key: "service" | "stage" | "budget", value: string) {
-    setState((prev) => ({ ...prev, [key]: value }));
+    // startedAt records when the visitor began, so the server can ignore forms sent impossibly fast
+    setState((prev) => ({ ...prev, [key]: value, startedAt: prev.startedAt || Date.now() }));
     setTimeout(advance, 180);
   }
 
@@ -59,7 +60,7 @@ export default function ContactClientPage() {
     e.preventDefault();
     set({ loading: true, error: "" });
     try {
-      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: state.name, email: state.email, service: state.service, stage: state.stage, budget: state.budget, description: state.description }) });
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: state.name, email: state.email, service: state.service, stage: state.stage, budget: state.budget, description: state.description, website: state.website, startedAt: state.startedAt }) });
       const data = await res.json();
       if (!res.ok) { set({ loading: false, error: data.error ?? "Something went wrong." }); return; }
       setState((prev) => ({ ...prev, loading: false, step: 4, direction: 1 }));
@@ -142,6 +143,13 @@ export default function ContactClientPage() {
                           {state.step === 2 && <SelectGrid options={budgetOptions} selected={state.budget} onSelect={(v) => selectAndAdvance("budget", v)} />}
                           {state.step === 3 && (
                             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                              {/* Spam trap: hidden from people and screen readers; bots that fill every field give themselves away */}
+                              <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+                                <label>
+                                  Website
+                                  <input type="text" name="website" tabIndex={-1} autoComplete="off" value={state.website} onChange={(e) => set({ website: e.target.value })} />
+                                </label>
+                              </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                   <label className={labelClass} style={{ fontSize: "0.64rem" }}>Name</label>
