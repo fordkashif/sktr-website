@@ -264,3 +264,7 @@ html.light:has(.sk) {
 
 .sk input[type="range"] { accent-color: #3e69ff; }
 .sk a:focus-visible, .sk button:focus-visible, .sk input:focus-visible { outline: 2px solid var(--sk-cyan); outline-offset: 3px; border-radius: 0; }
+
+/* A slot waiting for real content: dashed, labelled, impossible to mistake for a real claim */
+.sk-todo { border: 1.5px dashed var(--sk-line-strong); color: var(--sk-muted); }
+.sk-todo-tag { display: inline-block; font-size: 0.875rem; font-weight: 600; color: var(--sk-cyan); }
