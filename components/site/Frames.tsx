@@ -1,62 +1,51 @@
 import Image from "next/image";
-import type { ReactNode } from "react";
 
-/** A browser window around a screenshot (or a marked placeholder when there is no screenshot yet) */
-export function BrowserFrame({
+/** A thin-bezel display around a screenshot. With no screenshot it shows a quiet blank screen with the product's name. */
+export function Display({
   src,
-  alt,
-  address,
-  placeholder,
+  alt = "",
+  name,
   priority,
-  sizes = "(min-width: 1024px) 50vw, 100vw",
+  sizes = "(min-width: 1120px) 1080px, 96vw",
 }: {
   src?: string;
   alt?: string;
-  address: string;
-  placeholder?: string;
+  name?: string;
   priority?: boolean;
   sizes?: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-[14px] bg-white shadow-[0_34px_70px_-28px_rgb(11_16_32/0.45)] ring-1 ring-[rgb(11_16_32/0.08)]">
-      <div className="flex h-9 items-center gap-3 bg-[#f1f3f8] px-4">
-        <span className="flex gap-1.5" aria-hidden="true">
-          <i className="block h-2.5 w-2.5 rounded-full bg-[#c9cfdd]" />
-          <i className="block h-2.5 w-2.5 rounded-full bg-[#c9cfdd]" />
-          <i className="block h-2.5 w-2.5 rounded-full bg-[#c9cfdd]" />
-        </span>
-        <span className="truncate rounded-full bg-white px-3 py-0.5 text-[0.72rem] font-medium text-[var(--sk-muted)]">{address}</span>
-      </div>
-      {src ? (
-        <Image src={src} alt={alt ?? ""} width={1440} height={900} sizes={sizes} priority={priority} className="block h-auto w-full" />
-      ) : (
-        <Placeholder ratio="16 / 10">{placeholder}</Placeholder>
-      )}
-    </div>
-  );
-}
-
-/** A phone around a screenshot (or a marked placeholder) */
-export function PhoneFrame({ src, alt, placeholder, sizes = "280px" }: { src?: string; alt?: string; placeholder?: string; sizes?: string }) {
-  return (
-    <div className="rounded-[2.3rem] bg-[var(--sk-ink)] p-[7px] shadow-[0_34px_60px_-24px_rgb(11_16_32/0.55)]">
-      <div className="overflow-hidden rounded-[1.9rem] bg-white">
+    <div className="rounded-[clamp(12px,2vw,26px)] bg-[#1d1d1f] p-[clamp(5px,0.9vw,12px)] shadow-[0_50px_100px_-40px_rgb(0_0_0/0.45)]">
+      <div className="overflow-hidden rounded-[clamp(7px,1.2vw,15px)] bg-white">
         {src ? (
-          <Image src={src} alt={alt ?? ""} width={780} height={1688} sizes={sizes} className="block h-auto w-full" />
+          <Image src={src} alt={alt} width={2880} height={1800} sizes={sizes} priority={priority} className="block h-auto w-full" />
         ) : (
-          <Placeholder ratio="390 / 844">{placeholder}</Placeholder>
+          <Blank ratio="16 / 10" name={name} />
         )}
       </div>
     </div>
   );
 }
 
-function Placeholder({ ratio, children }: { ratio: string; children?: ReactNode }) {
+/** A phone around a screenshot, or a blank screen with the product's name */
+export function Phone({ src, alt = "", name, sizes = "260px" }: { src?: string; alt?: string; name?: string; sizes?: string }) {
   return (
-    <div className="sk-placeholder flex items-center justify-center p-6 text-center" style={{ aspectRatio: ratio }}>
-      <span className="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-[var(--sk-muted)] ring-1 ring-[var(--sk-line)]">
-        {children ?? "Screenshot to be added"}
-      </span>
+    <div className="rounded-[2.4rem] bg-[#1d1d1f] p-[7px] shadow-[0_40px_70px_-30px_rgb(0_0_0/0.5)]">
+      <div className="overflow-hidden rounded-[2rem] bg-white">
+        {src ? <Image src={src} alt={alt} width={780} height={1688} sizes={sizes} className="block h-auto w-full" /> : <Blank ratio="390 / 844" name={name} />}
+      </div>
+    </div>
+  );
+}
+
+function Blank({ ratio, name }: { ratio: string; name?: string }) {
+  return (
+    <div
+      className="flex flex-col items-center justify-center gap-2 bg-[linear-gradient(160deg,#fbfbfd,#e8e8ed)] p-6 text-center"
+      style={{ aspectRatio: ratio }}
+    >
+      <span className="text-[clamp(1.1rem,2.4vw,2rem)] font-bold tracking-[-0.03em] text-[#1d1d1f]">{name}</span>
+      <span className="text-[0.95rem] text-[#6e6e73]">Screens coming soon</span>
     </div>
   );
 }
