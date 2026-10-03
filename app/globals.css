@@ -155,13 +155,16 @@ body::before {
   z-index: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* In the base layer so colour and weight utilities on a link or heading can override them */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-h1, h2, h3, h4 {
-  font-weight: 800;
+  h1, h2, h3, h4 {
+    font-weight: 800;
+  }
 }
 
 .mono {
@@ -193,3 +196,45 @@ h1, h2, h3, h4 {
 [data-custom-cursor] *::after {
   cursor: none !important;
 }
+
+/* ── The new light look (preview). A page that contains .sk switches the document to white. ── */
+.sk {
+  --sk-ink: #0b1020;
+  --sk-muted: #586176;
+  --sk-blue: #2b54f5;
+  --sk-blue-deep: #1b3fd6;
+  --sk-sky: #eef2ff;
+  --sk-lime: #d6f95c;
+  --sk-line: #e2e6f0;
+  color: var(--sk-ink);
+  background: #ffffff;
+}
+:root:has(.sk) body { background: #ffffff; color: #0b1020; }
+:root:has(.sk) body::before { display: none; }
+:root:has(.sk) { color-scheme: light; }
+
+.sk-display { font-weight: 800; letter-spacing: -0.05em; line-height: 0.9; }
+.sk-wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 768px) { .sk-wrap { padding-inline: 2.5rem; } }
+
+/* The slant comes from the SKTR logo: panels lean the way the letters do */
+.sk-slant-panel { clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%); }
+.sk-slant-top { clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%); padding-top: 5vw; }
+
+/* Hero entrance: the panel wipes in along the slant, then the screens arrive */
+@keyframes sk-rise { from { opacity: 0; transform: translateY(0.4em); } to { opacity: 1; transform: none; } }
+@keyframes sk-wipe { from { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); } to { clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%); } }
+@keyframes sk-slide { from { opacity: 0; transform: translate(18%, 4%) rotate(var(--r, 0deg)); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+@keyframes sk-pop { from { opacity: 0; transform: translateY(22%) rotate(var(--r, 0deg)); } to { opacity: 1; transform: rotate(var(--r, 0deg)); } }
+.sk-rise { animation: sk-rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0s); }
+.sk-wipe { animation: sk-wipe 0.9s cubic-bezier(0.7, 0, 0.2, 1) both; }
+.sk-slide { transform: rotate(var(--r, 0deg)); animation: sk-slide 1s cubic-bezier(0.2, 0.9, 0.2, 1) both; animation-delay: var(--d, 0s); }
+.sk-pop { transform: rotate(var(--r, 0deg)); animation: sk-pop 0.9s cubic-bezier(0.2, 1.1, 0.3, 1) both; animation-delay: var(--d, 0s); }
+@media (prefers-reduced-motion: reduce) {
+  .sk-rise, .sk-wipe, .sk-slide, .sk-pop { animation: none; }
+}
+
+.sk-placeholder {
+  background: repeating-linear-gradient(-58deg, rgb(11 16 32 / 0.05) 0 14px, transparent 14px 28px), #ffffff;
+}
+.sk a:focus-visible, .sk button:focus-visible { outline: 3px solid var(--sk-blue); outline-offset: 3px; }

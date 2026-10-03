@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
-import CustomCursor from "@/components/CustomCursor";
 import NavigationProgress from "@/components/NavigationProgress";
-import NoiseOverlay from "@/components/NoiseOverlay";
 import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -99,9 +97,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <ThemeProvider>
-          <CustomCursor />
           <NavigationProgress />
-          <NoiseOverlay />
           {children}
           <Analytics />
         </ThemeProvider>

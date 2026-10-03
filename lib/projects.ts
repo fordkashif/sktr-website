@@ -16,6 +16,26 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "abis-kitchen",
+    name: "Abi's Kitchen",
+    category: "Website and booking system",
+    tagline: "A catering website that prices an event in minutes.",
+    description:
+      "A website and back office for a Kingston caterer: instant quotes online, popup kitchen ordering, and invoices, all run from one admin.",
+    tech: ["Next.js", "Supabase", "Vercel", "Resend"],
+    overview:
+      "Abi's Kitchen caters weddings, corporate events and parties in Kingston. We built the public website, an online quote form that prices an event as the customer fills it in, a popup kitchen ordering flow, and the admin the team uses to manage quotes, orders and invoices.",
+    problem:
+      "A catering price depends on the event, the package, the dishes, the guest count and how the food is served. Customers needed a way to get a price themselves, and the team needed one place to track every request through to a paid invoice.",
+    solution:
+      "A six-step quote form shows packages with a price per person, lets customers choose their dishes, and gives an estimate before they send. Each request lands in the admin with its own reference number, where the team can turn it into a designed PDF quote or invoice. The public site was redesigned around the food itself.",
+    outcome:
+      "Live at abiskitchenja.com. Customers can price an event, order from the popup kitchen and receive a branded invoice without a phone call.",
+    featured: true,
+    year: "2026",
+    status: "client",
+  },
+  {
     slug: "abc-fast-or-slow",
     name: "ABC Fast or Slow",
     category: "Mobile Game",
