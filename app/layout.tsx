@@ -23,23 +23,23 @@ const BASE_URL = "https://thesktr.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "SKTR Labs — Software Studio",
-    template: "%s | SKTR Labs",
+    default: "SKTR | Software Studio",
+    template: "%s | SKTR",
   },
   description:
-    "SKTR Labs is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs.",
+    "SKTR is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs.",
   openGraph: {
-    title: "SKTR Labs — Software Studio",
+    title: "SKTR | Software Studio",
     description:
       "We design and build mobile apps, web platforms, SaaS products, and APIs.",
     url: BASE_URL,
-    siteName: "SKTR Labs",
+    siteName: "SKTR",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "SKTR Labs — Software Studio",
+        alt: "SKTR | Software Studio",
       },
     ],
     type: "website",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SKTR Labs — Software Studio",
+    title: "SKTR | Software Studio",
     description:
       "We design and build mobile apps, web platforms, SaaS products, and APIs.",
     images: ["/opengraph-image"],
@@ -73,11 +73,11 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SKTR Labs",
+  name: "SKTR",
   url: BASE_URL,
   logo: `${BASE_URL}/sktr-logo.png`,
   description:
-    "SKTR Labs is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs.",
+    "SKTR is a software studio. We design and build mobile apps, web platforms, SaaS products, and APIs.",
   email: "signal@thesktr.com",
   sameAs: [],
 };

@@ -35,7 +35,7 @@ export const services: Service[] = [
     tag: "Web",
     shortDesc: "Full-stack web applications built to last.",
     description:
-      "Production-ready web platforms built for real load. We work in Next.js for frontend-heavy applications and Spring Boot for robust backend services — or both.",
+      "Production-ready web platforms built for real load. We work in Next.js for frontend-heavy applications and Spring Boot for robust backend services, or both.",
     included: [
       "Server-side rendering and static generation",
       "REST and GraphQL APIs",
@@ -53,7 +53,7 @@ export const services: Service[] = [
     tag: "SaaS",
     shortDesc: "Multi-tenant software built to scale.",
     description:
-      "From concept to launched product. We design and build SaaS applications end-to-end — covering architecture, billing, user management, and the core product experience.",
+      "From concept to launched product. We design and build SaaS applications end-to-end, covering architecture, billing, user management, and the core product experience.",
     included: [
       "Multi-tenant architecture",
       "Subscription billing with Stripe",
@@ -71,7 +71,7 @@ export const services: Service[] = [
     tag: "Design",
     shortDesc: "Interfaces that are clear and intentional.",
     description:
-      "Design that serves the product, not the portfolio. We work in Figma to produce clean, functional interfaces — and because we build what we design, what ships matches what was designed.",
+      "Design that serves the product, not the portfolio. We work in Figma to produce clean, functional interfaces, and because we build what we design, what ships matches what was designed.",
     included: [
       "User flows and wireframes",
       "High-fidelity UI design in Figma",
@@ -107,7 +107,7 @@ export const services: Service[] = [
     tag: "MVP",
     shortDesc: "From concept to working product, fast.",
     description:
-      "If you need to validate an idea quickly, we scope to the essential and ship. No unnecessary features — a solid, working product you can put in front of real users.",
+      "If you need to validate an idea quickly, we scope to the essential and ship. No unnecessary features, a solid, working product you can put in front of real users.",
     included: [
       "Problem definition and scope alignment",
       "Technology selection",
@@ -125,7 +125,7 @@ export const services: Service[] = [
     tag: "Support",
     shortDesc: "Continued development after launch.",
     description:
-      "We stay involved after launch. Whether you need regular feature development, performance monitoring, security updates, or technical guidance — we offer ongoing engagement for products we've built.",
+      "We stay involved after launch. Whether you need regular feature development, performance monitoring, security updates, or technical guidance, we offer ongoing engagement for products we've built.",
     included: [
       "Regular feature development sprints",
       "Bug fixing and performance monitoring",
