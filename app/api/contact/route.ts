@@ -79,7 +79,7 @@ export async function POST(req: Request) {
 
     // Notify team
     const notice = await resend.emails.send({
-      from: "SKTR Labs Contact <signal@thesktr.com>",
+      from: "SKTR Contact <signal@thesktr.com>",
       to: "signal@thesktr.com",
       replyTo: email.trim(),
       subject: `Project inquiry: ${typeof service === "string" && service ? service.slice(0, 80) : "Not specified"}, ${name.trim().replace(/[\r\n]+/g, " ")}`,
@@ -129,7 +129,7 @@ export async function POST(req: Request) {
 
     // Auto-reply to submitter
     await resend.emails.send({
-      from: "SKTR Labs <signal@thesktr.com>",
+      from: "SKTR <signal@thesktr.com>",
       to: email.trim(),
       subject: "We got it.",
       html: `
@@ -143,7 +143,7 @@ export async function POST(req: Request) {
             If it&apos;s urgent, reply directly to this email.
           </p>
           <p style="color:rgba(232,235,240,0.32);font-size:0.8rem;border-top:1px solid rgba(131,145,190,0.15);padding-top:1.5rem;margin:0;">
-            SKTR Labs &middot; Software Studio &middot; <a href="https://thesktr.com" style="color:#3e69ff;">thesktr.com</a>
+            SKTR &middot; Software Studio &middot; <a href="https://thesktr.com" style="color:#3e69ff;">thesktr.com</a>
           </p>
         </div>
       `,

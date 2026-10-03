@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "SKTR — Innovation Group";
+export const alt = "SKTR, a software studio";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const verticals = ["Athletics", "Labs", "Media", "Ventures"];
+const verticals = ["Mobile apps", "Web platforms", "SaaS", "APIs"];
 
 export default function OGImage() {
   return new ImageResponse(
@@ -34,7 +34,7 @@ export default function OGImage() {
           }}
         />
 
-        {/* Blue glow — top left */}
+        {/* Blue glow, top left */}
         <div
           style={{
             position: "absolute",
@@ -78,7 +78,7 @@ export default function OGImage() {
               fontWeight: 500,
             }}
           >
-            Innovation Group
+            Software Studio
           </div>
           <div style={{ display: "flex", gap: "32px" }}>
             {verticals.map((v) => (
@@ -110,9 +110,9 @@ export default function OGImage() {
               marginBottom: "28px",
             }}
           >
-            BUILDING
+            Your idea,
             <br />
-            FORWARD.
+            built right.
           </div>
           <div
             style={{
@@ -123,8 +123,8 @@ export default function OGImage() {
               fontWeight: 400,
             }}
           >
-            We build, operate, and back companies
-            with long-term conviction.
+            We design and build mobile apps, web platforms,
+            SaaS products and APIs.
           </div>
         </div>
 

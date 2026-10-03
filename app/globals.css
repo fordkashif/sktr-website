@@ -155,13 +155,16 @@ body::before {
   z-index: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* In the base layer so colour and weight utilities on a link or heading can override them */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-h1, h2, h3, h4 {
-  font-weight: 800;
+  h1, h2, h3, h4 {
+    font-weight: 800;
+  }
 }
 
 .mono {
@@ -193,3 +196,75 @@ h1, h2, h3, h4 {
 [data-custom-cursor] *::after {
   cursor: none !important;
 }
+
+/* ── The new look (preview). A page that contains .sk uses these colours.
+   Dark by default; html.light (the switch in the header) swaps to light. ── */
+:root:has(.sk) {
+  --sk-bg: #07080b;
+  --sk-panel: #0d0f15;
+  --sk-panel-2: #141821;
+  --sk-line: rgb(255 255 255 / 0.09);
+  --sk-line-strong: rgb(255 255 255 / 0.18);
+  --sk-ink: #f4f5f7;
+  --sk-muted: #9ba2b0;
+  --sk-blue: #5b83ff;
+  --sk-cyan: #2fb4ff;
+  --sk-btn: #ffffff;
+  --sk-btn-ink: #07080b;
+  --sk-glow: rgb(62 105 255 / 0.28);
+  --sk-grid: rgb(255 255 255 / 0.045);
+  --sk-head-fade: #a9b0bf;
+  color-scheme: dark;
+}
+html.light:has(.sk) {
+  --sk-bg: #ffffff;
+  --sk-panel: #f6f7f9;
+  --sk-panel-2: #eceef3;
+  --sk-line: rgb(10 14 30 / 0.1);
+  --sk-line-strong: rgb(10 14 30 / 0.22);
+  --sk-ink: #0b0e17;
+  --sk-muted: #586073;
+  --sk-blue: #2b54f5;
+  --sk-cyan: #0a84d6;
+  --sk-btn: #0b0e17;
+  --sk-btn-ink: #ffffff;
+  --sk-glow: rgb(62 105 255 / 0.14);
+  --sk-grid: rgb(10 14 30 / 0.05);
+  --sk-head-fade: #3a4152;
+  color-scheme: light;
+}
+:root:has(.sk) body, html.light:has(.sk) body { background: var(--sk-bg); color: var(--sk-ink); }
+:root:has(.sk) body::before { display: none; }
+
+.sk { color: var(--sk-ink); background: var(--sk-bg); }
+.sk-wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 768px) { .sk-wrap { padding-inline: 2rem; } }
+.sk-h1 { font-weight: 700; letter-spacing: -0.045em; line-height: 0.98; }
+.sk-h2 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; }
+/* Headlines fade slightly towards the bottom, the way lit type does on a dark screen */
+.sk-lit { background: linear-gradient(180deg, var(--sk-ink) 35%, var(--sk-head-fade)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sk-code { font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace; }
+
+/* A fine grid behind the hero that fades out, lit from above in the brand blue */
+.sk-hero-bg {
+  background:
+    radial-gradient(60% 55% at 50% 0%, var(--sk-glow), transparent 70%),
+    linear-gradient(var(--sk-grid) 1px, transparent 1px) 0 0 / 100% 56px,
+    linear-gradient(90deg, var(--sk-grid) 1px, transparent 1px) 0 0 / 56px 100%;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+  mask-image: linear-gradient(180deg, #000 55%, transparent);
+}
+
+@keyframes sk-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.sk-rise { animation: sk-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0s); }
+/* A value in the demo flashes when it changes */
+@keyframes sk-flash { from { background: rgb(47 180 255 / 0.35); } to { background: transparent; } }
+.sk-flash { animation: sk-flash 0.7s ease-out; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) { .sk-rise, .sk-flash { animation: none; } }
+
+.sk input[type="range"] { accent-color: #3e69ff; }
+.sk a:focus-visible, .sk button:focus-visible, .sk input:focus-visible { outline: 2px solid var(--sk-cyan); outline-offset: 3px; border-radius: 0; }
+
+/* A slot waiting for real content: dashed, labelled, impossible to mistake for a real claim */
+.sk-todo { border: 1.5px dashed var(--sk-line-strong); color: var(--sk-muted); }
+.sk-todo-tag { display: inline-block; font-size: 0.875rem; font-weight: 600; color: var(--sk-cyan); }

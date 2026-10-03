@@ -12,9 +12,47 @@ export interface Project {
   featured: boolean;
   year: string;
   status: "live" | "in-progress" | "client";
+  /** The live address, shown as a link on the case study */
+  url?: string;
+  /** Screenshots, widest first. Without any, the page shows a blank screen marked "Screens coming soon". */
+  shots?: { desktop?: { src: string; alt: string }[]; phone?: { src: string; alt: string }[] };
 }
 
 export const projects: Project[] = [
+  {
+    slug: "abis-kitchen",
+    name: "Abi's Kitchen",
+    category: "Website and booking system",
+    tagline: "A catering website that prices an event in minutes.",
+    description:
+      "A website and back office for a Kingston caterer: instant quotes online, popup kitchen ordering, and invoices, all run from one admin.",
+    tech: ["Next.js", "Supabase", "Vercel", "Resend"],
+    overview:
+      "Abi's Kitchen caters weddings, corporate events and parties in Kingston. We built the public website, an online quote form that prices an event as the customer fills it in, a popup kitchen ordering flow, and the admin the team uses to manage quotes, orders and invoices.",
+    problem:
+      "A catering price depends on the event, the package, the dishes, the guest count and how the food is served. Customers needed a way to get a price themselves, and the team needed one place to track every request through to a paid invoice.",
+    solution:
+      "A six-step quote form shows packages with a price per person, lets customers choose their dishes, and gives an estimate before they send. Each request lands in the admin with its own reference number, where the team can turn it into a designed PDF quote or invoice. The public site was redesigned around the food itself.",
+    outcome:
+      "Live at abiskitchenja.com. Customers can price an event, order from the popup kitchen and receive a branded invoice without a phone call.",
+    featured: true,
+    year: "2026",
+    status: "client",
+    url: "https://www.abiskitchenja.com",
+    shots: {
+      desktop: [
+        { src: "/work/abis-kitchen/home.webp", alt: "The Abi's Kitchen home page" },
+        { src: "/work/abis-kitchen/table.webp", alt: "Dishes shown as plates on the home page" },
+        { src: "/work/abis-kitchen/menu.webp", alt: "The catering menu page" },
+        { src: "/work/abis-kitchen/services.webp", alt: "The services page" },
+      ],
+      phone: [
+        { src: "/work/abis-kitchen/m-home.webp", alt: "The home page on a phone" },
+        { src: "/work/abis-kitchen/m-quote.webp", alt: "Choosing a package in the quote form" },
+        { src: "/work/abis-kitchen/m-menu.webp", alt: "The menu on a phone" },
+      ],
+    },
+  },
   {
     slug: "abc-fast-or-slow",
     name: "ABC Fast or Slow",
@@ -26,9 +64,9 @@ export const projects: Project[] = [
     overview:
       "ABC Fast or Slow is a mobile game built around a single, deceptively simple mechanic: given a letter, decide quickly whether it falls in the first or second half of the alphabet. Simple rules, increasingly fast gameplay, and a competitive leaderboard that keeps players coming back.",
     problem:
-      "Casual word games tend to be either too complex to learn in under 30 seconds, or too shallow to hold interest past day one. There was room for something immediately intuitive with genuine replay value — driven by speed and personal improvement rather than content unlocks.",
+      "Casual word games tend to be either too complex to learn in under 30 seconds, or too shallow to hold interest past day one. There was room for something immediately intuitive with genuine replay value, driven by speed and personal improvement rather than content unlocks.",
     solution:
-      "We built a clean, native-quality mobile experience using React Native and Expo. Firebase handles real-time leaderboards and user score persistence across devices. The design strips away everything except the core gameplay loop — each round stays under 60 seconds and the interface is distraction-free.",
+      "We built a clean, native-quality mobile experience using React Native and Expo. Firebase handles real-time leaderboards and user score persistence across devices. The design strips away everything except the core gameplay loop, each round stays under 60 seconds and the interface is distraction-free.",
     outcome:
       "Published on the App Store and Google Play. Consistent Day-7 retention driven by leaderboard competition. Organic installs with no paid acquisition.",
     featured: true,
@@ -41,12 +79,12 @@ export const projects: Project[] = [
     category: "SaaS Platform",
     tagline: "Service booking software for independent providers.",
     description:
-      "A SaaS booking platform for small service businesses — scheduling, client management, and payments in one place.",
+      "A SaaS booking platform for small service businesses, scheduling, client management, and payments in one place.",
     tech: ["Next.js", "Supabase", "Stripe", "Tailwind CSS"],
     overview:
-      "bhbooking is a SaaS product for independent service providers — hair stylists, personal trainers, consultants, and anyone who books time for a living. It brings appointment scheduling, client management, and Stripe-powered payments into a single, clean interface. No spreadsheets, no WhatsApp threads.",
+      "bhbooking is a SaaS product for independent service providers, hair stylists, personal trainers, consultants, and anyone who books time for a living. It brings appointment scheduling, client management, and Stripe-powered payments into a single, clean interface. No spreadsheets, no WhatsApp threads.",
     problem:
-      "Small service businesses were managing bookings across WhatsApp, paper diaries, and disconnected free tools that didn't talk to each other. Most booking software was designed and priced for enterprise — too complex, too expensive, and wrong for a one-person operation.",
+      "Small service businesses were managing bookings across WhatsApp, paper diaries, and disconnected free tools that didn't talk to each other. Most booking software was designed and priced for enterprise, too complex, too expensive, and wrong for a one-person operation.",
     solution:
       "We designed and built a focused SaaS platform on Next.js with Supabase as the backend. Clients book online through a provider's link, the provider gets notified instantly, payment is collected or deferred via Stripe, and everything is tracked in a clean dashboard.",
     outcome:
@@ -66,7 +104,7 @@ export const projects: Project[] = [
     overview:
       "Beyond our own products, we partner with external clients to design and build custom software. Projects range from mobile apps and customer-facing platforms to internal tools and API integrations across different industries.",
     problem:
-      "Every engagement starts with the same question: what problem actually needs to be solved? We don't open with a technology choice — we start by understanding the business and working backwards from the outcome the client needs.",
+      "Every engagement starts with the same question: what problem actually needs to be solved? We don't open with a technology choice, we start by understanding the business and working backwards from the outcome the client needs.",
     solution:
       "Our process is consistent regardless of project size: define the problem, design the right solution, build it to a standard, and ship it. We bring the same technical approach to client work that we apply to our own products.",
     outcome:
