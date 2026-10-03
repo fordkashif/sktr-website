@@ -22,10 +22,10 @@ const STEPS = [
 const STACK = ["React Native", "Expo", "Next.js", "Spring Boot", "Supabase", "PostgreSQL", "Firebase", "Stripe"];
 
 const primary =
-  "inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[var(--sk-btn)] px-7 text-[1.0625rem] font-semibold text-[var(--sk-btn-ink)] transition-opacity hover:opacity-85";
+  "inline-flex h-12 items-center justify-center gap-2 rounded-none bg-[var(--sk-btn)] px-7 text-[1.0625rem] font-semibold text-[var(--sk-btn-ink)] transition-opacity hover:opacity-85";
 const secondary =
-  "inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[var(--sk-line-strong)] px-7 text-[1.0625rem] font-semibold text-[var(--sk-ink)] transition-colors hover:bg-[var(--sk-panel-2)]";
-const card = "group relative overflow-hidden rounded-2xl border border-[var(--sk-line)] bg-[var(--sk-panel)] transition-colors hover:border-[var(--sk-line-strong)]";
+  "inline-flex h-12 items-center justify-center gap-2 rounded-none border border-[var(--sk-line-strong)] px-7 text-[1.0625rem] font-semibold text-[var(--sk-ink)] transition-colors hover:bg-[var(--sk-panel-2)]";
+const card = "group relative overflow-hidden rounded-none border border-[var(--sk-line)] bg-[var(--sk-panel)] transition-colors hover:border-[var(--sk-line-strong)]";
 
 function CardLink({ href, children }: { href: string; children: ReactNode }) {
   return (
@@ -39,7 +39,7 @@ function CardLink({ href, children }: { href: string; children: ReactNode }) {
 export default function Page() {
   return (
     <div className="sk overflow-x-clip">
-      <a href="#main" className="fixed left-4 top-[-100%] z-[100] rounded-full bg-[var(--sk-btn)] px-4 py-2 font-semibold text-[var(--sk-btn-ink)] focus:top-4">
+      <a href="#main" className="fixed left-4 top-[-100%] z-[100] rounded-none bg-[var(--sk-btn)] px-4 py-2 font-semibold text-[var(--sk-btn-ink)] focus:top-4">
         Skip to content
       </a>
       <SiteHeader />
@@ -160,7 +160,7 @@ export default function Page() {
           <h2 id="services-title" className="sk-h2 m-0 text-[clamp(2.5rem,6vw,4.5rem)]">
             What we build
           </h2>
-          <ul className="m-0 mt-10 list-none overflow-hidden rounded-2xl border border-[var(--sk-line)] p-0 md:mt-14">
+          <ul className="m-0 mt-10 list-none overflow-hidden rounded-none border border-[var(--sk-line)] p-0 md:mt-14">
             {services.map((s, i) => (
               <li key={s.id} className={i ? "border-t border-[var(--sk-line)]" : undefined}>
                 <Link

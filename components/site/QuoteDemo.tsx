@@ -49,7 +49,7 @@ export default function QuoteDemo() {
   const dim = "text-[#6b7385]";
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--sk-line-strong)] bg-[var(--sk-panel)] text-left shadow-[0_60px_120px_-50px_rgb(0_0_0/0.8)]">
+    <div className="overflow-hidden rounded-none border border-[var(--sk-line-strong)] bg-[var(--sk-panel)] text-left shadow-[0_60px_120px_-50px_rgb(0_0_0/0.8)]">
       <div className="flex h-11 items-center gap-3 border-b border-[var(--sk-line)] px-4">
         <span className="flex gap-1.5" aria-hidden="true">
           <i className="block h-2.5 w-2.5 rounded-full bg-[var(--sk-line-strong)]" />
@@ -71,7 +71,7 @@ export default function QuoteDemo() {
                 return (
                   <label
                     key={p.id}
-                    className={`flex cursor-pointer items-center gap-3 rounded-xl border px-4 py-3 transition-colors ${on ? "border-[#3e69ff] bg-[rgb(62_105_255/0.12)]" : "border-[var(--sk-line)] hover:border-[var(--sk-line-strong)]"}`}
+                    className={`flex cursor-pointer items-center gap-3 rounded-none border px-4 py-3 transition-colors ${on ? "border-[#3e69ff] bg-[rgb(62_105_255/0.12)]" : "border-[var(--sk-line)] hover:border-[var(--sk-line-strong)]"}`}
                   >
                     <input type="radio" name="sk-demo-package" className="sr-only" checked={on} onChange={() => setPkg(p)} />
                     <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 ${on ? "border-[#3e69ff]" : "border-[var(--sk-line-strong)]"}`} aria-hidden="true">

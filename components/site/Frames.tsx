@@ -17,7 +17,7 @@ export function Window({
   sizes?: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-[var(--sk-line-strong)] bg-[var(--sk-panel)] shadow-[0_40px_80px_-40px_rgb(0_0_0/0.7)]">
+    <div className="overflow-hidden rounded-none border border-[var(--sk-line-strong)] bg-[var(--sk-panel)] shadow-[0_40px_80px_-40px_rgb(0_0_0/0.7)]">
       <div className="flex h-9 items-center gap-3 border-b border-[var(--sk-line)] px-3.5">
         <span className="flex gap-1.5" aria-hidden="true">
           <i className="block h-2.5 w-2.5 rounded-full bg-[var(--sk-line-strong)]" />

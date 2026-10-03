@@ -263,4 +263,4 @@ html.light:has(.sk) {
 @media (prefers-reduced-motion: reduce) { .sk-rise, .sk-flash { animation: none; } }
 
 .sk input[type="range"] { accent-color: #3e69ff; }
-.sk a:focus-visible, .sk button:focus-visible, .sk input:focus-visible { outline: 2px solid var(--sk-cyan); outline-offset: 3px; border-radius: 6px; }
+.sk a:focus-visible, .sk button:focus-visible, .sk input:focus-visible { outline: 2px solid var(--sk-cyan); outline-offset: 3px; border-radius: 0; }

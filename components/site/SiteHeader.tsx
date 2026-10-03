@@ -27,7 +27,7 @@ function ThemeSwitch() {
       type="button"
       onClick={() => setTheme(light ? "dark" : "light")}
       aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
-      className="flex h-10 w-10 items-center justify-center rounded-full text-[var(--sk-muted)] transition-colors hover:bg-[var(--sk-panel-2)] hover:text-[var(--sk-ink)]"
+      className="flex h-10 w-10 items-center justify-center rounded-none text-[var(--sk-muted)] transition-colors hover:bg-[var(--sk-panel-2)] hover:text-[var(--sk-ink)]"
     >
       {light ? <Moon size={19} /> : <Sun size={19} />}
     </button>
@@ -66,7 +66,7 @@ export default function SiteHeader() {
           <ThemeSwitch />
           <Link
             href="/contact"
-            className="hidden h-10 items-center rounded-full bg-[var(--sk-btn)] px-5 text-[0.9375rem] font-semibold text-[var(--sk-btn-ink)] transition-opacity hover:opacity-85 md:inline-flex"
+            className="hidden h-10 items-center rounded-none bg-[var(--sk-btn)] px-5 text-[0.9375rem] font-semibold text-[var(--sk-btn-ink)] transition-opacity hover:opacity-85 md:inline-flex"
           >
             Start a project
           </Link>
@@ -76,7 +76,7 @@ export default function SiteHeader() {
             aria-controls="sk-mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-[var(--sk-ink)] md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-none text-[var(--sk-ink)] md:hidden"
           >
             {open ? <X size={22} /> : <List size={22} />}
           </button>
@@ -90,7 +90,7 @@ export default function SiteHeader() {
               {l.label}
             </Link>
           ))}
-          <Link href="/contact" onClick={() => setOpen(false)} className="mt-6 flex min-h-13 h-13 items-center justify-center rounded-full bg-[var(--sk-btn)] py-3.5 text-lg font-semibold text-[var(--sk-btn-ink)]">
+          <Link href="/contact" onClick={() => setOpen(false)} className="mt-6 flex min-h-13 h-13 items-center justify-center rounded-none bg-[var(--sk-btn)] py-3.5 text-lg font-semibold text-[var(--sk-btn-ink)]">
             Start a project
           </Link>
         </nav>
