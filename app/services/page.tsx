@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ServicesClientPage from "@/components/labs/ServicesClientPage";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services" },
   title: "Services",
   description:
     "Mobile app development, web platforms, SaaS products, UI/UX design, APIs, and MVP builds. Full breakdown of what SKTR Labs builds and how.",

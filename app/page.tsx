@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { MotionConfig } from "framer-motion";
 import ScrollProgress from "@/components/ScrollProgress";
 import Header from "@/components/Header";
@@ -9,6 +10,8 @@ import LabsProcess from "@/components/labs/LabsProcess";
 import LabsCTABanner from "@/components/labs/LabsCTABanner";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 export default function Page() {
   return (
