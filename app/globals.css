@@ -197,34 +197,70 @@ body::before {
   cursor: none !important;
 }
 
-/* ── The new light look (preview). A page that contains .sk switches the document to white. ──
-   Quiet and product-led: white and one soft grey, near-black text, blue only for actions. */
-.sk {
-  --sk-ink: #1d1d1f;
-  --sk-muted: #6e6e73;
-  --sk-blue: #1f5bf0;
-  --sk-blue-deep: #1747c4;
-  --sk-grey: #f5f5f7;
-  --sk-line: #d9d9de;
-  color: var(--sk-ink);
-  background: #ffffff;
+/* ── The new look (preview). A page that contains .sk uses these colours.
+   Dark by default; html.light (the switch in the header) swaps to light. ── */
+:root:has(.sk) {
+  --sk-bg: #07080b;
+  --sk-panel: #0d0f15;
+  --sk-panel-2: #141821;
+  --sk-line: rgb(255 255 255 / 0.09);
+  --sk-line-strong: rgb(255 255 255 / 0.18);
+  --sk-ink: #f4f5f7;
+  --sk-muted: #9ba2b0;
+  --sk-blue: #5b83ff;
+  --sk-cyan: #2fb4ff;
+  --sk-btn: #ffffff;
+  --sk-btn-ink: #07080b;
+  --sk-glow: rgb(62 105 255 / 0.28);
+  --sk-grid: rgb(255 255 255 / 0.045);
+  --sk-head-fade: #a9b0bf;
+  color-scheme: dark;
 }
-:root:has(.sk) body { background: #ffffff; color: #1d1d1f; }
+html.light:has(.sk) {
+  --sk-bg: #ffffff;
+  --sk-panel: #f6f7f9;
+  --sk-panel-2: #eceef3;
+  --sk-line: rgb(10 14 30 / 0.1);
+  --sk-line-strong: rgb(10 14 30 / 0.22);
+  --sk-ink: #0b0e17;
+  --sk-muted: #586073;
+  --sk-blue: #2b54f5;
+  --sk-cyan: #0a84d6;
+  --sk-btn: #0b0e17;
+  --sk-btn-ink: #ffffff;
+  --sk-glow: rgb(62 105 255 / 0.14);
+  --sk-grid: rgb(10 14 30 / 0.05);
+  --sk-head-fade: #3a4152;
+  color-scheme: light;
+}
+:root:has(.sk) body, html.light:has(.sk) body { background: var(--sk-bg); color: var(--sk-ink); }
 :root:has(.sk) body::before { display: none; }
-:root:has(.sk) { color-scheme: light; }
 
-.sk-wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: 1.375rem; }
+.sk { color: var(--sk-ink); background: var(--sk-bg); }
+.sk-wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.25rem; }
+@media (min-width: 768px) { .sk-wrap { padding-inline: 2rem; } }
 .sk-h1 { font-weight: 700; letter-spacing: -0.045em; line-height: 0.98; }
 .sk-h2 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.04; }
+/* Headlines fade slightly towards the bottom, the way lit type does on a dark screen */
+.sk-lit { background: linear-gradient(180deg, var(--sk-ink) 35%, var(--sk-head-fade)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sk-code { font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace; }
 
-/* The hero screen grows as it scrolls into view (--p runs 0 to 1, set by ScrollGrow) */
-.sk-grow { transform: scale(calc(0.8 + 0.2 * var(--p, 1))); transform-origin: 50% 0; will-change: transform; }
-
-@keyframes sk-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-.sk-rise { animation: sk-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0s); }
-@media (prefers-reduced-motion: reduce) {
-  .sk-rise { animation: none; }
-  .sk-grow { transform: none; }
+/* A fine grid behind the hero that fades out, lit from above in the brand blue */
+.sk-hero-bg {
+  background:
+    radial-gradient(60% 55% at 50% 0%, var(--sk-glow), transparent 70%),
+    linear-gradient(var(--sk-grid) 1px, transparent 1px) 0 0 / 100% 56px,
+    linear-gradient(90deg, var(--sk-grid) 1px, transparent 1px) 0 0 / 56px 100%;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+  mask-image: linear-gradient(180deg, #000 55%, transparent);
 }
 
-.sk a:focus-visible, .sk button:focus-visible { outline: 3px solid var(--sk-blue); outline-offset: 3px; border-radius: 6px; }
+@keyframes sk-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.sk-rise { animation: sk-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0s); }
+/* A value in the demo flashes when it changes */
+@keyframes sk-flash { from { background: rgb(47 180 255 / 0.35); } to { background: transparent; } }
+.sk-flash { animation: sk-flash 0.7s ease-out; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) { .sk-rise, .sk-flash { animation: none; } }
+
+.sk input[type="range"] { accent-color: #3e69ff; }
+.sk a:focus-visible, .sk button:focus-visible, .sk input:focus-visible { outline: 2px solid var(--sk-cyan); outline-offset: 3px; border-radius: 6px; }
